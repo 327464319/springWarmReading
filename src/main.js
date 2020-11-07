@@ -7,6 +7,7 @@ import 'amfe-flexible'
 import 'vant/lib/index.css'
 import './style/index.scss'
 import './mockJs'
+import './utils/day'
 Vue.use(Vant)
 
 new Vue({

@@ -7,7 +7,7 @@ const configArray = []
 files.keys().forEach(key => {
   if (key === './index.js') return
   // 每次遍历把得到的对象添加到数组中
-  configArray.push(files[key].default)
+  configArray.push(files(key).default)
 })
 configArray.forEach(item => {
   // 把对象转成二维数组，拿到里面的key和value

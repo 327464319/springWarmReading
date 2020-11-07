@@ -17,6 +17,6 @@ configArray.forEach(item => {
     // 切割一下 path
     const protocal = path.split('|')
     // 利用Mock来进行模拟
-    Mock.mock(new RegExp(`^${protocal[0]}`), protocal[1], target)
+    MockJS.mock(new RegExp(`^${protocal[0]}`), protocal[1], target)
   }
 })

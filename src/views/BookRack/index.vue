@@ -1,5 +1,39 @@
 <template>
-  <div class="book-rack">
+  <div class="book-rack" v-if="!firstbook.books_id">
+    <div class="top-details">
+      <!-- 顶部导航栏 -->
+      <van-row class="top-nav">
+        <van-col span="7" class="title">春暖阅读</van-col>
+        <van-col span="14" class="min-des">面朝大海，春暖花开</van-col>
+        <van-col span="3" class="more-icon">
+          <van-icon name="weapp-nav" />
+        </van-col>
+      </van-row>
+      <!-- 书籍详情 -->
+      <div class="book-detail">
+        <div class="book-img">
+          <img src="../../assets/fengmian.jpg" />
+        </div>
+        <div class="book-information">
+          <div class="name">书名</div>
+          <div class="author">作者</div>
+          <div class="description">描述</div>
+          <div class="has-read">已读100%</div>
+        </div>
+      </div>
+    </div>
+    <!-- 书籍列表 -->
+    <!-- <div class="book-lists">
+      <div class="book-list-item" v-for="item in bookList" :key="item.books_id">
+        <div class="listItem-image">
+          <img :src="item.book_image" alt="封面" />
+        </div>
+        <div class="listItem-name">{{ item.book_name }}</div>
+      </div>
+    </div> -->
+  </div>
+
+  <div class="book-rack" v-else>
     <div class="top-details">
       <!-- 顶部导航栏 -->
       <van-row class="top-nav">
@@ -26,7 +60,7 @@
     <div class="book-lists">
       <div class="book-list-item" v-for="item in bookList" :key="item.books_id">
         <div class="listItem-image">
-          <img :src="item.book_image" alt="封面" />
+          <img :src="item.book_image" />
         </div>
         <div class="listItem-name">{{ item.book_name }}</div>
       </div>
@@ -44,7 +78,7 @@ export default {
       firstbook: {}
     }
   },
-  created () {
+  mounted () {
     this.getBooks()
   },
   methods: {

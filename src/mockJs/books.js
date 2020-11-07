@@ -3,7 +3,7 @@ var Random = MockJS.Random
 
 export default {
   'http://localhost:8080/getbooks|get': option => {
-    console.log(option)
+    // console.log(option)
     return {
       status: 200,
       msg: '获取书籍列表成功',

@@ -12,27 +12,51 @@
     </van-nav-bar>
     <!-- 主体 -->
     <van-tabs v-model="active">
-      <van-tab title="标签 1">
+      <van-tab :title="item.cate_name" v-for="item in catesList" :key="item.id">
+        <!-- 轮播图 -->
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-          <van-swipe-item>1</van-swipe-item>
-          <van-swipe-item>2</van-swipe-item>
-          <van-swipe-item>3</van-swipe-item>
-          <van-swipe-item>4</van-swipe-item>
+          <van-swipe-item v-for="(image, index) in item.images" :key="index">
+            <van-image
+              :src="image"
+              :show-error="true"
+              :lazy-load="true"
+              class="lazyImg"
+              fit="cover"
+            />
+          </van-swipe-item>
         </van-swipe>
+        <!-- 书籍列表 -->
+        <book-list :cateId="item.id"></book-list>
       </van-tab>
     </van-tabs>
   </div>
 </template>
 
 <script>
+import { getCatesList } from '../../api/category'
+import BookList from './BookList'
+
 export default {
   name: 'BookMall',
+  components: { BookList },
   data () {
     return {
       value: '',
-      active: 0
+      active: 0,
+      catesList: []
 
     }
+  },
+  methods: {
+    async getCates () {
+      const { data: res } = await getCatesList()
+      // console.log(res)
+      if (res.status !== 200) return this.$toast.fail('获取分类列表失败！')
+      this.catesList = res.data
+    }
+  },
+  created () {
+    this.getCates()
   }
 
 }
@@ -62,11 +86,20 @@ export default {
   font-size: 30px;
   color: #333;
 }
-.my-swipe .van-swipe-item {
-  color: #fff;
-  font-size: 20px;
-  line-height: 150px;
-  text-align: center;
-  background-color: #39a9ed;
+
+.van-swipe__indicator {
+  background: #ed424b;
+}
+.lazyImg {
+  width: 361px;
+  height: 150px;
+}
+.van-swipe {
+  width: 361px;
+  height: 150px;
+  background: #999999;
+}
+::v-deep .van-field__control {
+  font-size: 21px;
 }
 </style>

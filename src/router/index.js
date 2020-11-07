@@ -8,8 +8,15 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
-  }
+    component: Home,
+
+    children: [
+      { path: '/my', component: () => import('../views/My') },
+      { path: '/bookmall', component: () => import('../views/BookMall') },
+      { path: '/bookrack', component: () => import('../views/BookRack') }
+    ]
+  },
+  { path: '/login', component: () => import('../views/Login') }
 
 ]
 

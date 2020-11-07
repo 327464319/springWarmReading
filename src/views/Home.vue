@@ -1,9 +1,9 @@
 <template>
   <div class="homeContain">
-    <van-tabbar v-model="active">
-      <van-tabbar-item icon="home-o">标签</van-tabbar-item>
-      <van-tabbar-item icon="search">标签</van-tabbar-item>
-      <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
+    <van-tabbar route>
+      <van-tabbar-item icon="home-o" to="/bookrack">书架</van-tabbar-item>
+      <van-tabbar-item icon="wap-home-o" to="/bookmall">书城</van-tabbar-item>
+      <van-tabbar-item icon="friends-o" to="/my">我的</van-tabbar-item>
     </van-tabbar>
     <router-view />
   </div>
@@ -11,9 +11,10 @@
 
 <script>
 export default {
+  name: 'Home',
   data () {
     return {
-      active: ''
+
     }
   }
 
@@ -22,8 +23,6 @@ export default {
 
 <style lang="scss" scoped>
 .homeContain {
-  width: 375px;
-  height: 375px;
-  background-color: aqua;
+  width: 361px;
 }
 </style>

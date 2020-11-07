@@ -5,7 +5,6 @@
       <van-tabbar-item icon="search">标签</van-tabbar-item>
       <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
     </van-tabbar>
-
     <router-view />
   </div>
 </template>
@@ -22,4 +21,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.homeContain {
+  width: 375px;
+  height: 375px;
+  background-color: aqua;
+}
 </style>

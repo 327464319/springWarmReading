@@ -3,7 +3,8 @@ module.exports = {
    
     'postcss-pxtorem': {
       rootValue ({ file }) {
-      return file.indexOf('vant')===-1?75:37.5
+       
+      return file.indexOf('vant')===-1?36.1:37.5
       
       },
       propList: ['*'],

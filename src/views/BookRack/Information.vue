@@ -1,46 +1,31 @@
 <template>
-  <div class="details-container">
-    <div class="header">
-      <van-icon name="arrow-left" />
-    </div>
+  <div class="information-container">
+    <van-nav-bar title="书籍详情"
+                 left-arrow
+                 @click-left="onClickLeft" />
     <div class="box">
-      <div class="books_introduce">
-        <div class="introduce_left">
-          <van-image fit="cover"
-                     src="https://img.yzcdn.cn/vant/cat.jpeg" />
-        </div>
-        <div class="introduce_right">
-          <div class="books_name">
-            <div class="name">择天记</div>
-            <div class="star">
-              <van-icon name='star'></van-icon>
-              <van-icon name='star'></van-icon>
-              <van-icon name='star'></van-icon>
-              <van-icon name='star'></van-icon>
-              <van-icon name='star-o'></van-icon>
-              <span>8.4</span>
-            </div>
+      <div class="introduce">
+        <div class="introduce_top">
+          <div class="introduc_book_cover">
+            <van-image fit="cover"
+                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
           </div>
-          <div class="books_type">
-            <div class="books_type_top">
+          <div class="introduc_book_type">
+            <div class="introduc_book_type_top">择天记</div>
+            <div class="introduc_book_type_bottom">
               <span>猫腻</span>
-              <span class="books_type_top_middle">|</span>
+              <span>|</span>
               <span>玄幻</span>
             </div>
-            <div class="books_type_bottom">
-              <span class="books_type_bottom_left">5春卷/千字</span>
-              <span>313万字</span>
-            </div>
           </div>
         </div>
-      </div>
-      <div class="books_synopsis">
-        <div>命里有时终须有，命里无时要强求。</div>
-        <div>
-          <span>这是一个长生果的故事。择是选择。这是一个关于选择的故事。三千世界，满天神魔，手握道卷，掌天下...</span>
-          <span class="books_synopsis_left">
-            <van-icon name='arrow-down'></van-icon>
-          </span>
+        <div class="introduce_bottom">
+          <div>命里有时终须有，命里无时要强求。</div>
+          <div>这是一个长生果的故事。择是选择。这是一个关于选择的</div>
+          <div>故事。三千世界，满天神魔，手握道卷，掌天下...</div>
+          <div>
+            <van-icon name="arrow-down" />
+          </div>
         </div>
       </div>
       <catalog></catalog>
@@ -70,45 +55,30 @@
                        src="https://img.yzcdn.cn/vant/cat.jpeg" />
             <div class="popular_books_name">八荒剑神</div>
           </div>
-          <div class="popular_books_cover">
-            <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
-            <div class="popular_books_name">七届武神</div>
-          </div>
         </div>
       </div>
-      <div class="popular_books other_books">
+      <div class="popular_books">
         <div class="popular_books_top">
-          <div class="popular_books_top_left">作者其他作品</div>
+          <div class="popular_books_top_left">同类热门书籍</div>
           <div class="popular_books_top_right">
-            <span>
-              全部作品
-            </span>
-            <span class="popular_books_top_right_right">
-              <van-icon name="arrow" />
-            </span>
+            <span>全部作品</span>
           </div>
         </div>
         <div class="popular_books_bottom">
           <div class="popular_books_cover">
             <van-image fit='cover'
                        src="https://img.yzcdn.cn/vant/cat.jpeg" />
-            <div class="popular_books_name">择天记</div>
+            <div class="popular_books_name">九天帝尊</div>
           </div>
           <div class="popular_books_cover">
             <van-image fit='cover'
                        src="https://img.yzcdn.cn/vant/cat.jpeg" />
-            <div class="popular_books_name">将夜</div>
+            <div class="popular_books_name">太古战天诀</div>
           </div>
           <div class="popular_books_cover">
             <van-image fit='cover'
                        src="https://img.yzcdn.cn/vant/cat.jpeg" />
-            <div class="popular_books_name">间客</div>
-          </div>
-          <div class="popular_books_cover">
-            <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
-            <div class="popular_books_name">庆余年</div>
+            <div class="popular_books_name">八荒剑神</div>
           </div>
         </div>
       </div>
@@ -126,98 +96,79 @@
 </template>
 
 <script>
-import BottomNav from './BottomNav.vue'
 import Catalog from './Catalog.vue'
+import BottomNav from './BottomNav.vue'
 export default {
-  name: 'DetailsIndex',
+  name: 'Information-book',
   data () {
     return {
 
     }
   },
+  methods: {
+    onClickLeft () {
+
+    }
+  },
   components: {
-    BottomNav,
-    Catalog
+    Catalog,
+    BottomNav
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.details-container {
-  background-color: #f2f2f2;
+.information-container {
   padding-bottom: 40px;
-  .header {
-    background-color: #fff;
+  ::v-deep .van-nav-bar__left {
+    padding: 0;
     .van-icon {
-      padding-top: 9px;
-      color: #b6b6b6;
-      font-size: 28px;
+      font-size: 26px;
+      color: #b2b2b2;
     }
   }
-  .books_introduce {
+  .introduce {
     background-color: #fff;
-    display: flex;
-    padding: 6px 11px 0;
-    .introduce_left {
-      width: 100px;
-      height: 132px;
-      .van-image {
-        width: 100%;
-        height: 100%;
-      }
-    }
-    .introduce_right {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #39376b;
+    .introduce_top {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      font-size: 16px;
-      color: #454545;
-      margin-left: 12px;
-      width: 200px;
-      height: 110px;
-      .name {
-        margin-bottom: 8px;
-      }
-      .star {
-        color: #999999;
-        font-size: 15px;
-        span {
-          margin-left: 4px;
+      justify-content: center;
+      align-items: center;
+      .introduc_book_cover {
+        width: 94px;
+        height: 126px;
+        margin-top: 15px;
+        .van-image {
+          width: 100%;
+          height: 100%;
         }
       }
-      .books_type {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 100%;
-        height: 50px;
-        font-size: 15px;
-        .books_type_top {
-          .books_type_top_middle {
+      .introduc_book_type {
+        .introduc_book_type_top {
+          margin: 7px 0 3px 6px;
+        }
+        .introduc_book_type_bottom {
+          :nth-child(2) {
             margin: 0 3px;
           }
         }
-        .books_type_bottom {
-          .books_type_bottom_left {
-            margin-right: 9px;
-          }
-        }
+      }
+    }
+    .introduce_bottom {
+      line-height: 1.6;
+      margin-top: 10px;
+      padding-left: 15px;
+      font-size: 14px;
+      :last-child {
+        text-align: center;
       }
     }
   }
-  .books_synopsis {
-    background-color: #fff;
-    box-sizing: border-box;
-    font-size: 13.5px;
-    color: #7d7f7d;
-    padding: 5px 10px;
-    line-height: 1.5;
-    .books_synopsis_left {
-      padding-left: 23px;
-      font-size: 15px;
-    }
-  }
-
   .popular_books {
     background-color: #fff;
     display: flex;
@@ -230,12 +181,14 @@ export default {
       justify-content: space-between;
       font-size: 18px;
       color: #423333;
+      padding-top: 5px;
       .popular_books_top_right {
         color: #b2b2b2;
         font-size: 14px;
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-right: 7px;
         :nth-child(1) {
           padding: 3px 2px 0 0;
         }
@@ -252,7 +205,7 @@ export default {
       width: 100%;
       font-size: 15px;
       .popular_books_cover {
-        width: 23%;
+        width: 24%;
         height: 140px;
         .van-image {
           width: 100%;
@@ -287,8 +240,9 @@ export default {
   .box {
     position: fixed;
     overflow: auto;
-    top: 50px;
-    bottom: 45px;
+    top: 45px;
+    bottom: 1.27424rem;
+    border-top: 1.5px solid #ccc;
   }
 }
 </style>

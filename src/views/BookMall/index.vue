@@ -87,7 +87,7 @@ export default {
   color: #333;
 }
 
-.van-swipe__indicator {
+::v-deep .van-swipe__indicator {
   background: #ed424b;
 }
 .lazyImg {
@@ -101,5 +101,8 @@ export default {
 }
 ::v-deep .van-field__control {
   font-size: 21px;
+}
+.van-swipe {
+  margin-bottom: 15px;
 }
 </style>

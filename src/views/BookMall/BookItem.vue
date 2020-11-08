@@ -8,7 +8,7 @@
         {{ bookitem.title }}
       </span>
       <span>{{ bookitem.author }}</span>
-      <span>{{ bookitem.description }}</span>
+      <span class="van-multi-ellipsis--l3">{{ bookitem.description }}</span>
     </div>
   </div>
 </template>

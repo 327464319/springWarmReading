@@ -16,7 +16,8 @@ const routes = [
       { path: '/bookrack', component: () => import('../views/BookRack') }
     ]
   },
-  { path: '/login', component: () => import('../views/Login') }
+  { path: '/login', component: () => import('../views/Login') },
+  { path: '/search', component: () => import('../views/BookRack/RankRearch') }
 
 ]
 

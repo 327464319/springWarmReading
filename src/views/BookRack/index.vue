@@ -156,7 +156,7 @@ export default {
     async getBooks () {
       try {
         const { data: res } = await getBookList()
-        console.log(res)
+        // console.log(res)
         if (res.status !== 200) return this.$toast.fail('获取书籍列表失败！')
         this.bookList = res.data
         this.firstbook = this.bookList[0]

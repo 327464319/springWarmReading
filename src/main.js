@@ -2,11 +2,14 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import Vant from 'vant'
+import Vant, { Lazyload } from 'vant'
 import 'amfe-flexible'
 import 'vant/lib/index.css'
 import './style/index.scss'
 import './mockJs'
+import './utils/day'
+
+Vue.use(Lazyload)
 Vue.use(Vant)
 
 new Vue({

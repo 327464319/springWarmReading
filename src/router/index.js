@@ -9,6 +9,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    redirect: '/bookrack',
 
     children: [
       { path: '/my', component: () => import('@/views/My') },

@@ -8,7 +8,7 @@
         <div class="introduce_top">
           <div class="introduc_book_cover">
             <van-image fit="cover"
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/735/357735/b_357735.jpg" />
           </div>
           <div class="introduc_book_type">
             <div class="introduc_book_type_top">择天记</div>
@@ -42,17 +42,17 @@
         <div class="popular_books_bottom">
           <div class="popular_books_cover">
             <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/75/33812075/b_33812075.jpg" />
             <div class="popular_books_name">九天帝尊</div>
           </div>
           <div class="popular_books_cover">
             <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+                       src="https://www.zhetian.org/public/cover/bd/64/6e/bd646ed67ecab483539b2185fb56a64b.jpg" />
             <div class="popular_books_name">太古战天诀</div>
           </div>
           <div class="popular_books_cover">
             <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/783/818783/b_818783.jpg" />
             <div class="popular_books_name">八荒剑神</div>
           </div>
         </div>
@@ -67,17 +67,17 @@
         <div class="popular_books_bottom">
           <div class="popular_books_cover">
             <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/75/33812075/b_33812075.jpg" />
             <div class="popular_books_name">九天帝尊</div>
           </div>
           <div class="popular_books_cover">
             <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+                       src="https://www.zhetian.org/public/cover/bd/64/6e/bd646ed67ecab483539b2185fb56a64b.jpg" />
             <div class="popular_books_name">太古战天诀</div>
           </div>
           <div class="popular_books_cover">
             <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/783/818783/b_818783.jpg" />
             <div class="popular_books_name">八荒剑神</div>
           </div>
         </div>

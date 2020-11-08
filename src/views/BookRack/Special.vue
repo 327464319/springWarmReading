@@ -32,28 +32,28 @@
         <div class="user_like_books">
           <div class="user_like_books_cover">
             <van-image fit="cover"
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+                       src="http://img.dashenxiaoshuo.com/image/0/343/343s.jpg" />
           </div>
           <div class="user_like_books_name">权利红人</div>
         </div>
         <div class="user_like_books">
           <div class="user_like_books_cover">
             <van-image fit="cover"
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+                       src="https://www.biqudd.com/files/article/image/13/13633/13633s.jpg" />
           </div>
           <div class="user_like_books_name">官谋</div>
         </div>
         <div class="user_like_books">
           <div class="user_like_books_cover">
             <van-image fit="cover"
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+                       src="http://www.booksky.cc/headimgs/30/30802/s30802.jpg" />
           </div>
           <div class="user_like_books_name">官笙</div>
         </div>
         <div class="user_like_books">
           <div class="user_like_books_cover">
             <van-image fit="cover"
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+                       src="https://dss1.baidu.com/-4o3dSag_xI4khGko9WTAnF6hhy/boxapp_novel/wh%3D315%2C423/sign=20ff2d9a526034a829b7b082fa266560/023b5bb5c9ea15ce8f094492b8003af33b87b242.jpg" />
           </div>
           <div class="user_like_books_name">因为遇到你</div>
         </div>

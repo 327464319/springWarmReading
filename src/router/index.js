@@ -17,13 +17,10 @@ const routes = [
       { path: '/bookrack', component: () => import('@/views/BookRack') }
     ]
   },
-<<<<<<< HEAD
   { path: '/login', component: () => import('../views/Login') },
-  { path: '/search', component: () => import('../views/BookRack/RankRearch') }
-=======
+  { path: '/search', component: () => import('../views/BookRack/RankRearch') },
   { path: '/login', component: () => import('@/views/Login') },
   { name: 'DetailsIndex', path: '/details/:bookId', component: () => import('../views/BookRack/Details.vue'), props: true }
->>>>>>> 32e748756b58cdba61e8f7f8785b7bd4ff0a66fb
 
 ]
 

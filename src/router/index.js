@@ -14,7 +14,8 @@ const routes = [
     children: [
       { path: '/my', component: () => import('../views/My') },
       { path: '/bookmall', component: () => import('../views/BookMall') },
-      { path: '/bookrack', component: () => import('../views/BookRack') }
+      { path: '/bookrack', component: () => import('../views/BookRack') },
+      { path: '/account', component: () => import('../views/My/components/account.vue') }
     ]
   },
   { path: '/login', component: () => import('../views/Login') }

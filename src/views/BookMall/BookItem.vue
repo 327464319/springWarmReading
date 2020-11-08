@@ -1,5 +1,5 @@
 <template>
-  <div class="bookItemContain">
+  <div class="bookItemContain" @click="goDetail">
     <div class="bookCover">
       <van-image :src="bookitem.book_cover"></van-image>
     </div>
@@ -8,7 +8,7 @@
         {{ bookitem.title }}
       </span>
       <span>{{ bookitem.author }}</span>
-      <span>{{ bookitem.description }}</span>
+      <span class="van-multi-ellipsis--l3">{{ bookitem.description }}</span>
     </div>
   </div>
 </template>
@@ -20,6 +20,16 @@ export default {
     bookitem: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    goDetail () {
+      this.$router.push({
+        name: 'DetailsIndex',
+        params: {
+          bookId: this.bookitem.id
+        }
+      })
     }
   }
 

@@ -6,18 +6,17 @@
     <div class="box">
       <div class="books_introduce">
         <div class="introduce_left">
-          <van-image fit="cover"
-                     src="https://img.yzcdn.cn/vant/cat.jpeg" />
+          <van-image fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />
         </div>
         <div class="introduce_right">
           <div class="books_name">
             <div class="name">择天记</div>
             <div class="star">
-              <van-icon name='star'></van-icon>
-              <van-icon name='star'></van-icon>
-              <van-icon name='star'></van-icon>
-              <van-icon name='star'></van-icon>
-              <van-icon name='star-o'></van-icon>
+              <van-icon name="star"></van-icon>
+              <van-icon name="star"></van-icon>
+              <van-icon name="star"></van-icon>
+              <van-icon name="star"></van-icon>
+              <van-icon name="star-o"></van-icon>
               <span>8.4</span>
             </div>
           </div>
@@ -37,9 +36,11 @@
       <div class="books_synopsis">
         <div>命里有时终须有，命里无时要强求。</div>
         <div>
-          <span>这是一个长生果的故事。择是选择。这是一个关于选择的故事。三千世界，满天神魔，手握道卷，掌天下...</span>
+          <span
+            >这是一个长生果的故事。择是选择。这是一个关于选择的故事。三千世界，满天神魔，手握道卷，掌天下...</span
+          >
           <span class="books_synopsis_left">
-            <van-icon name='arrow-down'></van-icon>
+            <van-icon name="arrow-down"></van-icon>
           </span>
         </div>
       </div>
@@ -56,23 +57,19 @@
         </div>
         <div class="popular_books_bottom">
           <div class="popular_books_cover">
-            <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+            <van-image fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />
             <div class="popular_books_name">九天帝尊</div>
           </div>
           <div class="popular_books_cover">
-            <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+            <van-image fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />
             <div class="popular_books_name">太古战天诀</div>
           </div>
           <div class="popular_books_cover">
-            <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+            <van-image fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />
             <div class="popular_books_name">八荒剑神</div>
           </div>
           <div class="popular_books_cover">
-            <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+            <van-image fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />
             <div class="popular_books_name">七届武神</div>
           </div>
         </div>
@@ -81,9 +78,7 @@
         <div class="popular_books_top">
           <div class="popular_books_top_left">作者其他作品</div>
           <div class="popular_books_top_right">
-            <span>
-              全部作品
-            </span>
+            <span> 全部作品 </span>
             <span class="popular_books_top_right_right">
               <van-icon name="arrow" />
             </span>
@@ -91,23 +86,19 @@
         </div>
         <div class="popular_books_bottom">
           <div class="popular_books_cover">
-            <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+            <van-image fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />
             <div class="popular_books_name">择天记</div>
           </div>
           <div class="popular_books_cover">
-            <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+            <van-image fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />
             <div class="popular_books_name">将夜</div>
           </div>
           <div class="popular_books_cover">
-            <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+            <van-image fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />
             <div class="popular_books_name">间客</div>
           </div>
           <div class="popular_books_cover">
-            <van-image fit='cover'
-                       src="https://img.yzcdn.cn/vant/cat.jpeg" />
+            <van-image fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />
             <div class="popular_books_name">庆余年</div>
           </div>
         </div>
@@ -130,6 +121,12 @@ import BottomNav from './BottomNav.vue'
 import Catalog from './Catalog.vue'
 export default {
   name: 'DetailsIndex',
+  props: {
+    bookId: {
+      type: [Number, String],
+      required: true
+    }
+  },
   data () {
     return {
 

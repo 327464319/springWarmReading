@@ -18,7 +18,7 @@ const routes = [
     ]
   },
   { path: '/login', component: () => import('@/views/Login') },
-  { path: '/details', component: () => import('../views/BookRack/Details.vue') }
+  { name: 'DetailsIndex', path: '/details/:bookId', component: () => import('../views/BookRack/Details.vue'), props: true }
 
 ]
 

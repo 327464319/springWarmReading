@@ -18,7 +18,7 @@ const routes = [
     ]
   },
   { path: '/login', component: () => import('../views/Login') },
-  { path: '/search', component: () => import('../views/BookRack/RankRearch') },
+  { path: '/search', component: () => import('../views/BookRack/RankSearch') },
   { path: '/login', component: () => import('@/views/Login') },
   { name: 'DetailsIndex', path: '/details/:bookId', component: () => import('../views/BookRack/Details.vue'), props: true }
 

@@ -52,7 +52,7 @@ export default {
             this.booksInfo
           )
           this.list.push(...res.data)
-          // console.log(this.list.length)
+          console.log(this.list.length)
           this.booksInfo.books_page++
         }
 

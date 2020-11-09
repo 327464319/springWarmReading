@@ -233,11 +233,22 @@ export default {
       if (this.result.length === 0) {
         this.$toast.fail('您没有选择任何书籍')
       } else {
-        for (const item of this.result) {
-          console.log(item)
-          this.bookList = this.bookList.filter(bookItem => {
-            return bookItem.books_id !== item
-          })
+        if (this.result.length === this.bookList.length) {
+          this.bookList = []
+          setItem('bookList', null)
+        } else {
+          for (const item of this.result) {
+            console.log(item)
+            this.bookList = this.bookList.filter(bookItem => {
+              console.log(bookItem.books_id)
+              return bookItem.books_id !== item
+            })
+          }
+          if (this.bookList[0].books_id) {
+            setItem('id', this.bookList[0].books_id)
+            console.log(1)
+          }
+          setItem('bookList', this.bookList)
         }
       }
       this.result = []
@@ -245,6 +256,9 @@ export default {
     },
     onclick (id) {
       setItem('id', id)
+      if (!this.isDeleteShow) {
+        this.$router.push('/details')
+      }
     }
 
   }

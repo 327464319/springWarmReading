@@ -152,12 +152,13 @@ export default {
   },
   mounted () {
     // 设置默认id
-    setItem('id', 1)
-    console.log(getItem('bookList'))
-    if (getItem('bookList')[0] !== null) {
+    if (getItem('id') === null) {
+      setItem('id', 1)
+    }
+    if (getItem('bookList') !== null) {
       const data = getItem('bookList')
-      console.log(data)
-      const id = window.localStorage.getItem('id') - 0
+      // console.log(data)
+      const id = getItem('id') - 0
       let index = 0
       data.forEach(v => {
         if (v.books_id === id) {
@@ -169,15 +170,15 @@ export default {
       const newBook = data.filter(v => {
         return v.books_id === index
       })
-      console.log(newBook)
+      // console.log(newBook)
 
       // 4
       const arr = data.filter(bookItem => {
         return bookItem.books_id !== newBook[0].books_id
       })
       // 5
-      console.log(arr)
-      console.log(newBook[0])
+      // console.log(arr)
+      // console.log(newBook[0])
       arr.unshift(newBook[0])
       this.bookList = arr
       setItem('bookList', arr)

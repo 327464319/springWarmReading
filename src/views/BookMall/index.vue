@@ -4,30 +4,28 @@
     <!-- 搜索头部 -->
     <van-nav-bar fixed>
       <template #left>
-        <van-search v-model="value"
-          placeholder="春暖书城" />
+        <van-search v-model="value" placeholder="春暖书城" />
       </template>
       <template #right>
-        <van-icon name="weapp-nav"
-          @click="$router.push('/booktypes')"></van-icon>
+        <van-icon
+          name="weapp-nav"
+          @click="$router.push('/booktypes')"
+        ></van-icon>
       </template>
     </van-nav-bar>
     <!-- 主体 -->
     <van-tabs v-model="active">
-      <van-tab :title="item.cate_name"
-        v-for="item in catesList"
-        :key="item.id">
+      <van-tab :title="item.cate_name" v-for="item in catesList" :key="item.id">
         <!-- 轮播图 -->
-        <van-swipe class="my-swipe"
-          :autoplay="3000"
-          indicator-color="white">
-          <van-swipe-item v-for="(image, index) in item.images"
-            :key="index">
-            <van-image :src="image"
+        <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+          <van-swipe-item v-for="(image, index) in item.images" :key="index">
+            <van-image
+              :src="image"
               :show-error="true"
               :lazy-load="true"
               class="lazyImg"
-              fit="cover" />
+              fit="cover"
+            />
           </van-swipe-item>
         </van-swipe>
         <!-- 书籍列表 -->
@@ -82,7 +80,7 @@ export default {
   }
 
   width: 280px;
-  background: #ffffff;
+  background: #fff;
   .van-icon-search {
     font-size: 30px;
     color: #333;
@@ -114,5 +112,8 @@ export default {
 .van-tabs {
   position: fixed;
   top: 45px;
+}
+.van-search {
+  padding: 0;
 }
 </style>

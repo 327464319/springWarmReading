@@ -78,6 +78,7 @@ export default {
   margin-bottom: 15px;
 }
 .van-list {
+  padding-left: 10px;
   height: 54vh;
   overflow-y: auto;
 }

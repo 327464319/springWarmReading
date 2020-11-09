@@ -2,23 +2,21 @@
   <div class="next-types">
     <van-nav-bar title="玄幻">
       <template #left>
-        <van-icon name="arrow-left"
+        <van-icon
+          name="arrow-left"
           color="#8E8E8E"
           size="26px"
-          @click="$router.back()" />
+          @click="$router.back()"
+        />
       </template>
     </van-nav-bar>
     <!-- 书的列表 -->
-    <van-tabs v-model="active"
-      class="table">
-      <van-tab :title="item.cate_name"
-        v-for="item in catesList"
-        :key="item.id">
-        <book-list :cateId="item.id"></book-list>
+    <van-tabs v-model="active" class="table">
+      <van-tab :title="item.cate_name" v-for="item in catesList" :key="item.id">
+        <book-list :cateId="item.id" class="van-list"></book-list>
       </van-tab>
     </van-tabs>
   </div>
-
 </template>
 
 <script>
@@ -65,12 +63,16 @@ export default {
       color: #333333;
     }
     .van-tab {
-      border-bottom: 1px solid #777777;
-      border-top: 1px solid #777777;
+      border-bottom: 1px solid #fbfbfb;
+      border-top: 1px solid #fbfbfb;
       min-width: 80px;
       font-size: 16px;
       color: #333333;
     }
   }
+}
+.van-list {
+  margin-top: 10px;
+  height: 94vh !important;
 }
 </style>

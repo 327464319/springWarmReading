@@ -5,15 +5,27 @@
       <div class="left-icon" @click="$router.back()">
         <van-icon name="arrow-left" />
       </div>
-      <div class="center-input"><input type="text" v-model="value" /></div>
+      <div class="center-input">
+        <input type="text" v-model.trim="value" @input="toFindresult" />
+      </div>
       <div class="search-button">
         <button type="button" @click="toSearch">搜索</button>
       </div>
     </div>
-    <!-- 推荐栏 -->
-    <recommend :rcmdList="rcmdList"></recommend>
-    <!-- 历史搜索 -->
-    <history :historyList="historyList" @clear-all="removeHistory"></history>
+
+    <div class="middle-content">
+      <div v-if="!showSuggetion">
+        <!-- 推荐栏 -->
+        <recommend :rcmdList="rcmdList"></recommend>
+        <!-- 历史搜索 -->
+        <history
+          :historyList="historyList"
+          @clear-all="removeHistory"
+        ></history>
+      </div>
+      <!-- 搜索结果 -->
+      <result v-else></result>
+    </div>
   </div>
 </template>
 
@@ -22,6 +34,8 @@ import { getrcmdList } from '@/api/books'
 import { setItem, getItem, removeItem } from '@/utils/storage'
 import Recommend from './Recommend'
 import History from './History'
+// import Suggestion from './Suggestion'
+import Result from './Result'
 
 export default {
   name: 'RankSearch',
@@ -29,10 +43,12 @@ export default {
     return {
       rcmdList: [],
       value: '',
-      historyList: getItem('historyList') || []
+      historyList: getItem('historyList') || [],
+      suggestionList: ['去吧'],
+      showSuggetion: false
     }
   },
-  components: { Recommend, History },
+  components: { Recommend, History, Result },
   created () {
     this.getRcmdList()
   },
@@ -56,11 +72,15 @@ export default {
 
       this.historyList.unshift({ htyId: this.historyList.length, name: this.value })
       setItem('historyList', this.historyList)
-      this.value = ''
+      // this.value = ''
+      this.showSuggetion = true
     },
     removeHistory () {
       removeItem('historyList')
       this.historyList = []
+    },
+    toFindresult () {
+      this.showSuggetion = this.value.length !== 0
     }
   }
 }

@@ -97,7 +97,7 @@
     <!-- 书籍列表 -->
     <van-checkbox-group v-model="result" class="book-lists" ref="checkboxGroup">
       <div class="book-list-item" v-for="item in bookList" :key="item.books_id">
-        <div class="listItem-image">
+        <div class="listItem-image" @click="onclick(item.books_id)">
           <img :src="item.book_image" />
           <van-checkbox
             v-if="isDeleteShow"
@@ -137,6 +137,7 @@
 
 <script>
 import { getBookList } from '@/api/books'
+import { getItem, setItem } from '@/utils/storage'
 export default {
   name: 'BookRack',
   data () {
@@ -150,15 +151,64 @@ export default {
     }
   },
   mounted () {
-    this.getBooks()
+    // setItem('id', 1)
+    console.log(getItem('bookList'))
+    if (getItem('bookList')[0] !== null) {
+      const data = getItem('bookList')
+      console.log(data)
+      const id = window.localStorage.getItem('id') - 0
+      let index = 0
+      data.forEach(v => {
+        if (v.books_id === id) {
+          index = v.books_id
+          return ''
+        }
+      })
+      //
+      const newBook = data.filter(v => {
+        return v.books_id === index
+      })
+      console.log(newBook)
+
+      // 4
+      const arr = data.filter(bookItem => {
+        return bookItem.books_id !== newBook[0].books_id
+      })
+      // 5
+      console.log(arr)
+      console.log(newBook[0])
+      arr.unshift(newBook[0])
+      this.bookList = arr
+      setItem('bookList', arr)
+      this.firstbook = arr[0]
+    } else {
+      this.getBooks()
+    }
   },
   methods: {
     async getBooks () {
       try {
         const { data: res } = await getBookList()
-        // console.log(res)
+        console.log(res)
         if (res.status !== 200) return this.$toast.fail('获取书籍列表失败！')
+        const id = window.localStorage.getItem('id') - 0
+        let index = 0
+        res.data.forEach(v => {
+          if (v.books_id === id) {
+            index = v.books_id
+            return ''
+          }
+        })
+        console.log(3)
+        const data = res.data.filter(v => {
+          return v.books_id === index
+        })
+        res.data = res.data.filter(bookItem => {
+          return bookItem.books_id !== index
+        })
+        res.data.unshift(data[0])
         this.bookList = res.data
+        setItem('bookList', res.data)
         this.firstbook = this.bookList[0]
         this.$toast.success('获取书籍列表成功！')
       } catch (error) {
@@ -190,7 +240,11 @@ export default {
       }
       this.result = []
       console.log(this.bookList)
+    },
+    onclick (id) {
+      setItem('id', id)
     }
+
   }
 }
 

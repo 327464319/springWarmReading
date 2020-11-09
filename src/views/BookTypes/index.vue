@@ -9,12 +9,13 @@
       </template>
       <template #right>
         <van-icon class="iconfont icon-chaxun"
-          size="28px" />
+          size="28px"
+          @click="$router.push('/search')" />
       </template>
     </van-nav-bar>
 
     <van-cell class="manType">
-
+      <!-- 男生分类 -->
       <van-cell class="iconfont icon-woman1"
         title=" 男生"
         :border="false">
@@ -31,7 +32,7 @@
         </van-grid-item>
       </van-grid>
     </van-cell>
-
+    <!-- 女生分类 -->
     <van-cell class="womanType">
       <van-cell title="女生"
         class="iconfont icon-fenzu2"

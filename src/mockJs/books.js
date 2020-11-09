@@ -63,5 +63,22 @@ export default {
             【北京影视出版创作基金扶持作品】鸣谢北京市新闻出版广电局`
       }]
     }
+  },
+  'http://localhost:8080/getrecommendlist|get': option => {
+    return {
+      status: 200,
+      msg: '获取推荐列表成功',
+      data: [
+        { rcmdId: 0, name: '诡道传人' },
+        { rcmdId: 1, name: '择天记' },
+        { rcmdId: 2, name: '欢乐颂2' },
+        { rcmdId: 3, name: '佛本是道' },
+        { rcmdId: 4, name: '白鹿原' },
+        { rcmdId: 5, name: '大唐贞观第一纨绔' },
+        { rcmdId: 6, name: '修真狂少' },
+        { rcmdId: 7, name: '斗罗大陆' },
+        { rcmdId: 8, name: '时空' }
+      ]
+    }
   }
 }

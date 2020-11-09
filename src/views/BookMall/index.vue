@@ -2,7 +2,7 @@
   <!-- weapp-nav -->
   <div class="mallContain">
     <!-- 搜索头部 -->
-    <van-nav-bar>
+    <van-nav-bar fixed>
       <template #left>
         <van-search v-model="value" placeholder="春暖书城" />
       </template>
@@ -87,7 +87,7 @@ export default {
   color: #333;
 }
 
-.van-swipe__indicator {
+::v-deep .van-swipe__indicator {
   background: #ed424b;
 }
 .lazyImg {
@@ -101,5 +101,12 @@ export default {
 }
 ::v-deep .van-field__control {
   font-size: 21px;
+}
+.van-swipe {
+  margin-bottom: 15px;
+}
+.van-tabs {
+  position: fixed;
+  top: 45px;
 }
 </style>

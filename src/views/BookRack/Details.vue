@@ -1,20 +1,14 @@
 <template>
   <div class="details-container">
     <div class="header">
-<<<<<<< HEAD
       <van-icon name="arrow-left"
-                @click="$router.back()" />
-=======
-      <van-icon name="arrow-left" @click="$router.back()" />
->>>>>>> 31f519a3b6f377bff997f12a411757f805c5bf9e
+        @click="$router.back()" />
     </div>
     <div class="box">
       <div class="books_introduce">
         <div class="introduce_left">
-          <van-image
-            fit="cover"
-            src="https://wfqqreader-1252317822.image.myqcloud.com/cover/735/357735/b_357735.jpg"
-          />
+          <van-image fit="cover"
+            src="https://wfqqreader-1252317822.image.myqcloud.com/cover/735/357735/b_357735.jpg" />
         </div>
         <div class="introduce_right">
           <div class="books_name">
@@ -42,26 +36,24 @@
         </div>
       </div>
       <div class="books_synopsis"
-           v-if="informationContent">
+        v-if="informationContent">
         <div>命里有时终须有，命里无时要强求。</div>
         <div>
-          <span
-            >这是一个长生果的故事。择是选择。这是一个关于选择的故事。三千世界，满天神魔，手握道卷，掌天下...</span
-          >
+          <span>这是一个长生果的故事。择是选择。这是一个关于选择的故事。三千世界，满天神魔，手握道卷，掌天下...</span>
           <span class="books_synopsis_left">
             <van-icon name="arrow-down"
-                      @click="informationContent=!informationContent"></van-icon>
+              @click="informationContent=!informationContent"></van-icon>
           </span>
         </div>
       </div>
       <div class="books_synopsis"
-           v-if="!informationContent">
+        v-if="!informationContent">
         <div>命里有时终须有，命里无时要强求。</div>
         <div>
           <span>这是一个长生果的故事。择是选择。这是一个关于选择的故事。三千世界，满天神魔，手握道卷，掌天下天上一应事。 太始元年，有神石自太空飞来，分散落在人间，其中落在东土大陆的神石，上面镌刻着奇怪的图腾，人因观其图腾而悟道，后立国教。数千年后，十四岁的少年孤儿陈长生，为治病改命离开自己的师父，带着一纸婚约来到神都，从而开启了一个逆天强者的崛起征程。</span>
           <span class="books_synopsis_left">
             <van-icon name="arrow-up"
-                      @click="informationContent=!informationContent"></van-icon>
+              @click="informationContent=!informationContent"></van-icon>
           </span>
         </div>
       </div>
@@ -78,31 +70,23 @@
         </div>
         <div class="popular_books_bottom">
           <div class="popular_books_cover">
-            <van-image
-              fit="cover"
-              src="https://wfqqreader-1252317822.image.myqcloud.com/cover/75/33812075/b_33812075.jpg"
-            />
+            <van-image fit="cover"
+              src="https://wfqqreader-1252317822.image.myqcloud.com/cover/75/33812075/b_33812075.jpg" />
             <div class="popular_books_name">九天帝尊</div>
           </div>
           <div class="popular_books_cover">
-            <van-image
-              fit="cover"
-              src="https://www.zhetian.org/public/cover/bd/64/6e/bd646ed67ecab483539b2185fb56a64b.jpg"
-            />
+            <van-image fit="cover"
+              src="https://www.zhetian.org/public/cover/bd/64/6e/bd646ed67ecab483539b2185fb56a64b.jpg" />
             <div class="popular_books_name">太古战天诀</div>
           </div>
           <div class="popular_books_cover">
-            <van-image
-              fit="cover"
-              src="https://wfqqreader-1252317822.image.myqcloud.com/cover/783/818783/b_818783.jpg"
-            />
+            <van-image fit="cover"
+              src="https://wfqqreader-1252317822.image.myqcloud.com/cover/783/818783/b_818783.jpg" />
             <div class="popular_books_name">八荒剑神</div>
           </div>
           <div class="popular_books_cover">
-            <van-image
-              fit="cover"
-              src="https://wfqqreader-1252317822.image.myqcloud.com/cover/365/31449365/b_31449365.jpg"
-            />
+            <van-image fit="cover"
+              src="https://wfqqreader-1252317822.image.myqcloud.com/cover/365/31449365/b_31449365.jpg" />
             <div class="popular_books_name">七届武神</div>
           </div>
         </div>
@@ -119,31 +103,23 @@
         </div>
         <div class="popular_books_bottom">
           <div class="popular_books_cover">
-            <van-image
-              fit="cover"
-              src="https://wfqqreader-1252317822.image.myqcloud.com/cover/735/357735/b_357735.jpg"
-            />
+            <van-image fit="cover"
+              src="https://wfqqreader-1252317822.image.myqcloud.com/cover/735/357735/b_357735.jpg" />
             <div class="popular_books_name">择天记</div>
           </div>
           <div class="popular_books_cover">
-            <van-image
-              fit="cover"
-              src="https://wfqqreader-1252317822.image.myqcloud.com/cover/952/462952/b_462952.jpg"
-            />
+            <van-image fit="cover"
+              src="https://wfqqreader-1252317822.image.myqcloud.com/cover/952/462952/b_462952.jpg" />
             <div class="popular_books_name">将夜</div>
           </div>
           <div class="popular_books_cover">
-            <van-image
-              fit="cover"
-              src="https://wfqqreader-1252317822.image.myqcloud.com/cover/39/469039/b_469039.jpg"
-            />
+            <van-image fit="cover"
+              src="https://wfqqreader-1252317822.image.myqcloud.com/cover/39/469039/b_469039.jpg" />
             <div class="popular_books_name">间客</div>
           </div>
           <div class="popular_books_cover">
-            <van-image
-              fit="cover"
-              src="https://wfqqreader-1252317822.image.myqcloud.com/cover/592/462592/b_462592.jpg"
-            />
+            <van-image fit="cover"
+              src="https://wfqqreader-1252317822.image.myqcloud.com/cover/592/462592/b_462592.jpg" />
             <div class="popular_books_name">庆余年</div>
           </div>
         </div>

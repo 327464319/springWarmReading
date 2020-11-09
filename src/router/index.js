@@ -29,7 +29,9 @@ const routes = [
   { path: '/information', component: () => import('../views/BookRack/Information.vue') },
   { path: '/special', component: () => import('../views/BookRack/Special.vue') },
   { path: '/gender', component: () => import('../views/Gender') },
-  { path: '/register', component: () => import('../views/Register') }
+  { path: '/register', component: () => import('../views/Register') },
+  { path: '/booktypes', component: () => import('../views/BookTypes') },
+  { path: '/Nexttypes', component: () => import('../views/BookTypes/NextTypes') }
 
 ]
 

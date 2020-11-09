@@ -151,7 +151,8 @@ export default {
     }
   },
   mounted () {
-    // setItem('id', 1)
+    // 设置默认id
+    setItem('id', 1)
     console.log(getItem('bookList'))
     if (getItem('bookList')[0] !== null) {
       const data = getItem('bookList')

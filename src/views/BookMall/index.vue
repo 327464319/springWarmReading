@@ -54,6 +54,7 @@ export default {
       if (res.status !== 200) return this.$toast.fail('获取分类列表失败！')
       this.catesList = res.data
     }
+
   },
   created () {
     this.getCates()

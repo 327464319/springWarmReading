@@ -257,7 +257,7 @@ export default {
     onclick (id) {
       setItem('id', id)
       if (!this.isDeleteShow) {
-        this.$router.push('/details')
+        this.$router.push('/details/1')
       }
     }
 

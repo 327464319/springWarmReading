@@ -6,6 +6,7 @@
     </div>
     <div class="content">
       <van-cell
+        @click="goBookDetails(item)"
         :title="item.name"
         icon="underway"
         v-for="item in historyList"
@@ -32,6 +33,9 @@ export default {
   methods: {
     clearAllHistory () {
       this.$emit('clear-all')
+    },
+    goBookDetails (item) {
+      console.log(`你将点击前往${item.name}的书籍详情界面`)
     }
   }
 }

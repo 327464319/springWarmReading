@@ -19,21 +19,21 @@
 </van-grid>
 <!-- 充值中心 -->
 <!-- <pay-money/> -->
-<van-popup v-model="isPostShow" position="bottom" :style="{ height: '40%' }">
-
+<van-popup v-model="isPostShow" position="bottom" :style="{ height: '70%' }">
+    <pay-money/>
     </van-popup>
 
   </div>
 </template>
 
 <script>
-// import PayMoney from '../components/pay-money'
+import PayMoney from '../components/pay-money'
 export default {
   name: 'Account',
-  // components: {
-  //   PayMoney
+  components: {
+    PayMoney
 
-  // }
+  },
   data () {
     return {
       isPostShow: false

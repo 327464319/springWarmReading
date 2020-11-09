@@ -8,19 +8,19 @@
 />
 <!-- 充值框 -->
 <van-cell icon="location-o"   title="充值春卷"
-      />
+  />
  <van-grid :column-num="3" :border="false">
-  <van-grid-item  icon="gift-o" text="100卷" @click="isPostShow = true" />
-  <van-grid-item  icon="gift-o" text="200卷" @click="isPostShow = true"/>
-  <van-grid-item  icon="gift-o" text="300卷" @click="isPostShow = true" />
-  <van-grid-item  icon="gift-o" text="500卷" @click="isPostShow = true" />
-  <van-grid-item  icon="gift-o" text="1000卷" @click="isPostShow = true" />
-  <van-grid-item  icon="gift-o" text="1500卷" @click="isPostShow = true" />
+  <van-grid-item  icon="gift-o" text="100元" @click="onPostShow('100')" />
+  <van-grid-item  icon="gift-o" text="200元" @click="onPostShow('200') "/>
+  <van-grid-item  icon="gift-o" text="300元" @click="onPostShow('300')" />
+  <van-grid-item  icon="gift-o" text="500元" @click="onPostShow('500') " />
+  <van-grid-item  icon="gift-o" text="1000元" @click="onPostShow('1000')" />
+  <van-grid-item  icon="gift-o" text="1500元" @click="onPostShow('1500')" />
 </van-grid>
 <!-- 充值中心 -->
 <!-- <pay-money/> -->
-<van-popup v-model="isPostShow" position="bottom" :style="{ height: '70%' }">
-    <pay-money/>
+<van-popup v-model="isPostShow" position="bottom" :style="{ height: '70%' }"   close-icon-position="top-left"  closeable>
+    <pay-money :price='price' />
     </van-popup>
 
   </div>
@@ -36,8 +36,17 @@ export default {
   },
   data () {
     return {
-      isPostShow: false
+      isPostShow: false,
+      price: 0
     }
+  },
+  methods: {
+    onPostShow (e) {
+      this.isPostShow = true
+      this.price = e
+      // console.log(e)
+    }
+
   }
 
 }

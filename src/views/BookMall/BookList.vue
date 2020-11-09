@@ -32,48 +32,43 @@ export default {
       list: [],
       loading: false,
       finished: false,
-      error: false
+      error: false,
+      booksInfo: { cate_id: this.cateId, books_page: 0 }
     }
   },
   methods: {
-    onLoad () {
+    async  onLoad () {
       // 异步更新数据
       // setTimeout 仅做示例，真实场景中一般为 ajax 请求
       try {
-        if (Math.random() > 0.5) { JSON.parse('sss') }
-        setTimeout(() => {
-          for (let i = 0; i < 10; i++) {
-            this.list.push({
-              id: i,
-              book_cover: '//bookcover.yuewen.com/qdbimg/349573/1023539783/300',
-              title: '朕又不想当皇帝' + i,
-              author: '争斤论两花花帽' + i,
-              description: '重活一回，本想安安稳稳过一生，奈何都想逼着他做皇帝.......'
+        // if (Math.random() > 0.9) { JSON.parse('sss') }
 
-            })
-          }
+        if (this.list.length >= 40) {
+          // console.log(this.list)
+          this.finished = true
+          this.error = false
+        } else {
+          const { data: res } = await getBooksBycate(
+            this.booksInfo
+          )
+          this.list.push(...res.data)
+          // console.log(this.list.length)
+          this.booksInfo.books_page++
+        }
 
-          // 数据全部加载完成
-          if (this.list.length >= 40) {
-            // console.log(this.list)
-            this.finished = true
-          }
-        }, 1000)
+        // 数据全部加载完成
       } catch (e) {
-        this.loading = false
+        console.log(e)
         this.error = true
       } finally {
         // 加载状态结束
         this.loading = false
       }
-    },
-    async getBooksListBycate () {
-      await getBooksBycate(this.cateId)
-      // console.log(res)
     }
+
   },
   created () {
-    this.getBooksListBycate()
+
   }
 }
 </script>

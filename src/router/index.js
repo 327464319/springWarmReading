@@ -20,7 +20,12 @@ const routes = [
   },
   { path: '/login', component: () => import('../views/Login') },
   { path: '/search', component: () => import('../views/BookRack/RankSearch') },
-  { name: 'DetailsIndex', path: '/details/:bookId', component: () => import('../views/BookRack/Details.vue'), props: true },
+  {
+    name: 'DetailsIndex',
+    path: '/details/:bookId',
+    component: () => import('../views/BookRack/Details.vue'),
+    props: true
+  },
   { path: '/information', component: () => import('../views/BookRack/Information.vue') },
   { path: '/special', component: () => import('../views/BookRack/Special.vue') }
 

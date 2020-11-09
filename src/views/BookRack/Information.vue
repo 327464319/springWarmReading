@@ -105,9 +105,15 @@ export default {
 
     }
   },
+  props: {
+    // bookId: {
+    //   type: [Number, String],
+    //   required: true
+    // }
+  },
   methods: {
     onClickLeft () {
-
+      this.$router.back()
     }
   },
   components: {

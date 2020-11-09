@@ -1,7 +1,8 @@
 <template>
   <div class="details-container">
     <div class="header">
-      <van-icon name="arrow-left" />
+      <van-icon name="arrow-left"
+                @click="$router.back()" />
     </div>
     <div class="box">
       <div class="books_introduce">
@@ -34,12 +35,25 @@
           </div>
         </div>
       </div>
-      <div class="books_synopsis">
+      <div class="books_synopsis"
+           v-if="informationContent">
         <div>命里有时终须有，命里无时要强求。</div>
         <div>
           <span>这是一个长生果的故事。择是选择。这是一个关于选择的故事。三千世界，满天神魔，手握道卷，掌天下...</span>
           <span class="books_synopsis_left">
-            <van-icon name="arrow-down"></van-icon>
+            <van-icon name="arrow-down"
+                      @click="informationContent=!informationContent"></van-icon>
+          </span>
+        </div>
+      </div>
+      <div class="books_synopsis"
+           v-if="!informationContent">
+        <div>命里有时终须有，命里无时要强求。</div>
+        <div>
+          <span>这是一个长生果的故事。择是选择。这是一个关于选择的故事。三千世界，满天神魔，手握道卷，掌天下天上一应事。 太始元年，有神石自太空飞来，分散落在人间，其中落在东土大陆的神石，上面镌刻着奇怪的图腾，人因观其图腾而悟道，后立国教。数千年后，十四岁的少年孤儿陈长生，为治病改命离开自己的师父，带着一纸婚约来到神都，从而开启了一个逆天强者的崛起征程。</span>
+          <span class="books_synopsis_left">
+            <van-icon name="arrow-up"
+                      @click="informationContent=!informationContent"></van-icon>
           </span>
         </div>
       </div>
@@ -129,14 +143,14 @@ import Catalog from './Catalog.vue'
 export default {
   name: 'DetailsIndex',
   props: {
-    bookId: {
-      type: [Number, String],
-      required: true
-    }
+    // bookId: {
+    //   type: [Number, String],
+    //   required: true
+    // }
   },
   data () {
     return {
-
+      informationContent: true
     }
   },
   components: {
@@ -215,7 +229,6 @@ export default {
     font-size: 13.5px;
     color: #7d7f7d;
     padding: 5px 10px;
-    line-height: 1.5;
     .books_synopsis_left {
       padding-left: 23px;
       font-size: 15px;
@@ -241,7 +254,7 @@ export default {
         justify-content: center;
         align-items: center;
         :nth-child(1) {
-          padding: 3px 2px 0 0;
+          padding: 2px 2px 0 0;
         }
       }
       .popular_books_top_left {

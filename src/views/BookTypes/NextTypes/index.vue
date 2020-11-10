@@ -13,7 +13,7 @@
     <!-- 书的列表 -->
     <van-tabs v-model="active" class="table">
       <van-tab :title="item.cate_name" v-for="item in catesList" :key="item.id">
-        <book-list :cateId="item.id" class="van-list"></book-list>
+        <book-list :cateId="item.id" class="listContain"></book-list>
       </van-tab>
     </van-tabs>
   </div>
@@ -71,7 +71,7 @@ export default {
     }
   }
 }
-.van-list {
+.listContain {
   margin-top: 10px;
   height: 94vh !important;
 }

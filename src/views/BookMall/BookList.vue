@@ -1,23 +1,27 @@
 <template>
-  <van-list
-    v-model="loading"
-    :finished="finished"
-    finished-text="没有更多了"
-    @load="onLoad"
-    :error.sync="error"
-    error-text="请求失败，点击重新加载"
-  >
-    <book-item
-      :bookitem="item"
-      v-for="(item, index) in list"
-      :key="index + 'c'"
-    ></book-item>
-  </van-list>
+  <div class="listContain" ref="listRef">
+    <van-list
+      ref="ListRef"
+      v-model="loading"
+      :finished="finished"
+      finished-text="没有更多了"
+      @load="onLoad"
+      :error.sync="error"
+      error-text="请求失败，点击重新加载"
+    >
+      <book-item
+        :bookitem="item"
+        v-for="(item, index) in list"
+        :key="index + 'c'"
+      ></book-item>
+    </van-list>
+  </div>
 </template>
 
 <script>
 import { getBooksBycate } from '../../api/category'
 import BookItem from './BookItem'
+import { debounce } from 'lodash'
 export default {
   name: 'BookList',
   props: {
@@ -33,7 +37,8 @@ export default {
       loading: false,
       finished: false,
       error: false,
-      booksInfo: { cate_id: this.cateId, books_page: 0 }
+      booksInfo: { cate_id: this.cateId, books_page: 0 },
+      oldScrollTop: 0
     }
   },
   methods: {
@@ -52,7 +57,7 @@ export default {
             this.booksInfo
           )
           this.list.push(...res.data)
-          console.log(this.list.length)
+          // console.log(this.list.length)
           this.booksInfo.books_page++
         }
 
@@ -69,7 +74,17 @@ export default {
   },
   created () {
 
+  },
+  mounted () {
+    this.$refs.listRef.onscroll = debounce((e) => {
+      this.oldScrollTop = e.target.scrollTop
+    }, 300)
+  },
+
+  activated () {
+    this.$refs.listRef.scrollTop = this.oldScrollTop
   }
+
 }
 </script>
 
@@ -77,7 +92,7 @@ export default {
 .bookItemContain {
   margin-bottom: 15px;
 }
-.van-list {
+.listContain {
   padding-left: 10px;
   height: 54vh;
   overflow-y: auto;

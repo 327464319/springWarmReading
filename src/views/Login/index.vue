@@ -17,7 +17,7 @@
     </van-cell-group>
 
     <!-- 登录按钮 -->
-    <van-button class="deng" round type="primary" size="small">登 录</van-button>
+    <van-button class="deng" round type="primary" size="small" @click="zhanghao">登 录</van-button>
 
     <!-- 一键登录 -->
     <van-divider :style="{  padding: '0 16px' }">
@@ -28,46 +28,63 @@
     <div class="login-block">
       <span class="small-img">
         <van-image round width="60" height="60px" fit="cover" :src="require('../../assets/weixin.jpg')" />
-        <van-button class="icon-text" @click="wei" to="gender">微信登录</van-button>
+        <van-button class="icon-text" @click="wei" to="bookrack">微信登录</van-button>
       </span>
 
       <span class="small-img">
         <van-image round width="60px" height="60px" fit="cover" :src="require('../../assets/qq.png')" />
-        <van-button class="icon-text">QQ登录</van-button>
+        <van-button class="icon-text" to="bookrack" @click="qq">QQ登录</van-button>
       </span>
 
       <span class="small-img">
         <van-image round width="60px" height="60px" fit="cover" :src="require('../../assets/weibo.png')" />
-        <van-button class="icon-text">微博登录</van-button>
+        <van-button class="icon-text" to="bookrack" @click="weibo">微博登录</van-button>
       </span>
     </div>
     <!-- 注册跳转按钮 -->
-    <van-button class="register" round type="primary" to="register">去注册</van-button>
+    <van-button class="register" round type="primary" to="register">去注册>></van-button>
 
   </div>
 </template>
 
 <script>
 export default {
+
   name: 'Login',
   components: {},
-  props: {},
   data () {
     return {
       loading: false,
+      register: this.$route.params,
       zhang: '',
       mi: ''
     }
   },
   computed: {},
   watch: {},
-  created () {},
+  created () {
+    // console.log(this.$route.params)
+  },
   mounted () {},
   methods: {
     wei () {
       this.loading = false
-      this.$toast('微信登录成功')
+      this.$toast.success('微信登录成功')
+    },
+    qq () {
+      this.loading = false
+      this.$toast.success('qq登录成功')
+    },
+    weibo () {
+      this.loading = false
+      this.$toast.success('微博登录成功')
+    },
+    zhanghao () {
+      if (this.register.name === this.zhang.toString() && this.register.password === this.mi.toString()) {
+        this.$router.push('/my')
+      }
     }
+
   }
 
 }
@@ -131,11 +148,14 @@ export default {
     }
   }
   .register {
-    width: 78px;
-    height: 35px;
+    width: 93px;
+    height: 30px;
     margin-top: 12px;
     margin-left: 250px;
     font-size: 15px;
+    background-color: rgb(246, 248, 248);
+    border: 0px;
+    color: rgb(7, 193, 96);
   }
 }
 </style>

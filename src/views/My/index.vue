@@ -7,7 +7,7 @@
         class="avatar"
         lazy-load
         fit="cover"
-        src="https://img.yzcdn.cn/vant/cat.jpeg"/>
+        src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2759434887,1188403402&fm=26&gp=0.jpg"/>
      <span class="text">{{user.username}}</span>
     </div>
     <van-cell icon="location-o" title="我的账户"
@@ -107,7 +107,7 @@ export default {
       try {
         const queryinfo = window.localStorage.getItem('user')
         const { data } = await axios.get('http://localhost:8080/getuserInfo', { params: queryinfo })
-        console.log('LoaduserInfo -> data', data)
+        // console.log('LoaduserInfo -> data', data)
 
         this.userlist = data.data
 
@@ -117,7 +117,7 @@ export default {
         // this.user = window.localStorage.getItem('user')
         // this.user = JSON.parse(this.user)
 
-        console.log('LoaduserInfo ->  this.user', this.user)
+        // console.log('LoaduserInfo ->  this.user', this.user)
       } catch (err) {
         this.$router('获取用户数据失败')
       }
@@ -141,7 +141,7 @@ export default {
     align-items: center;
     flex-direction: column;
     background-color: #3296FA;
-    background-image: url("../../assets/banner.png");
+    background-image: url("../../assets/timg (1).jpg");
     background-size: cover;
   }
   .no-login{
@@ -151,13 +151,14 @@ export default {
     align-items: center;
     flex-direction: column;
     background-color: #3296FA;
-    background-image: url("../../assets/banner.png");
+    background-image: url("../../assets/timg (1).jpg");
     background-size: cover;
     .login{
       border: 0;
-      background-color: #3296FA;
-      color: #fff;
+      // background-color: #3296FA;
+      // color: #fff;
       font-size: 20px;
+      border-radius: 8px;
     }
     .login-photo{
       ::v-deep .mobile-img {

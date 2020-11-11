@@ -364,6 +364,7 @@ export default {
     overflow-x: hidden;
     top: 50px;
     bottom: 45px;
+    background-color: #f2f2f2;
   }
   .pdr {
     padding-right: 10px;

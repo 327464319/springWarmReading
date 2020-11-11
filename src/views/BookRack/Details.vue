@@ -65,10 +65,12 @@
             <span>
               <van-icon name="replay" />
             </span>
-            <span class="pdr">换一换</span>
+            <span class="pdr"
+                  @click="togglePopularBooks">换一换</span>
           </div>
         </div>
-        <div class="popular_books_bottom">
+        <div class="popular_books_bottom"
+             v-if="popularBooks===0">
           <div class="popular_books_cover">
             <van-image fit="cover"
                        src="https://wfqqreader-1252317822.image.myqcloud.com/cover/75/33812075/b_33812075.jpg" />
@@ -90,12 +92,58 @@
             <div class="popular_books_name">七届武神</div>
           </div>
         </div>
+        <div class="popular_books_bottom"
+             v-else-if="popularBooks===1">
+          <div class="popular_books_cover">
+            <van-image fit="cover"
+                       src="http://img.dashenxiaoshuo.com/image/0/343/343s.jpg" />
+            <div class="popular_books_name">权利红人</div>
+          </div>
+          <div class="popular_books_cover">
+            <van-image fit="cover"
+                       src="https://www.biqudd.com/files/article/image/13/13633/13633s.jpg" />
+            <div class="popular_books_name">官谋</div>
+          </div>
+          <div class="popular_books_cover">
+            <van-image fit="cover"
+                       src="http://www.booksky.cc/headimgs/30/30802/s30802.jpg" />
+            <div class="popular_books_name">官笙</div>
+          </div>
+          <div class="popular_books_cover">
+            <van-image fit="cover"
+                       src="https://dss1.baidu.com/-4o3dSag_xI4khGko9WTAnF6hhy/boxapp_novel/wh%3D315%2C423/sign=20ff2d9a526034a829b7b082fa266560/023b5bb5c9ea15ce8f094492b8003af33b87b242.jpg" />
+            <div class="popular_books_name">因为遇到你</div>
+          </div>
+        </div>
+        <div class="popular_books_bottom"
+             v-else>
+          <div class="popular_books_cover">
+            <van-image fit="cover"
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/735/357735/b_357735.jpg" />
+            <div class="popular_books_name">择天记</div>
+          </div>
+          <div class="popular_books_cover">
+            <van-image fit="cover"
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/952/462952/b_462952.jpg" />
+            <div class="popular_books_name">将夜</div>
+          </div>
+          <div class="popular_books_cover">
+            <van-image fit="cover"
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/39/469039/b_469039.jpg" />
+            <div class="popular_books_name">间客</div>
+          </div>
+          <div class="popular_books_cover">
+            <van-image fit="cover"
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/592/462592/b_462592.jpg" />
+            <div class="popular_books_name">庆余年</div>
+          </div>
+        </div>
       </div>
       <div class="popular_books other_books">
         <div class="popular_books_top">
           <div class="popular_books_top_left">作者其他作品</div>
           <div class="popular_books_top_right">
-            <span> 全部作品 </span>
+            <span @click="$router.push('/booklist')">全部作品 </span>
             <span class="popular_books_top_right_right">
               <van-icon name="arrow" />
             </span>
@@ -150,12 +198,21 @@ export default {
   },
   data () {
     return {
-      informationContent: true
+      informationContent: true,
+      popularBooks: 0
     }
   },
   components: {
     BottomNav,
     Catalog
+  },
+  methods: {
+    togglePopularBooks () {
+      this.popularBooks++
+      if (this.popularBooks > 2) {
+        this.popularBooks = 0
+      }
+    }
   }
 }
 </script>
@@ -307,6 +364,7 @@ export default {
     overflow-x: hidden;
     top: 50px;
     bottom: 45px;
+    background-color: #f2f2f2;
   }
   .pdr {
     padding-right: 10px;

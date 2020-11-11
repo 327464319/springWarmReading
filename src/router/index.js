@@ -39,7 +39,8 @@ const routes = [
   { path: '/gender', component: () => import('../views/Gender') },
   { path: '/register', component: () => import('../views/Register') },
   { path: '/booktypes', component: () => import('../views/BookTypes'), meta: { index: 3 } },
-  { path: '/Nexttypes', component: () => import('../views/BookTypes/NextTypes'), meta: { index: 2 } }
+  { path: '/Nexttypes', component: () => import('../views/BookTypes/NextTypes'), meta: { index: 2 } },
+  { path: '/booklist', component: () => import('@/views/BookMall/BookList.vue') }
 
 ]
 

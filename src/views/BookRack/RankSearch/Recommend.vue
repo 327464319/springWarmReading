@@ -2,7 +2,7 @@
   <div class="recommend-list">
     <div class="top">
       <div>大家都在搜</div>
-      <div><van-icon name="replay" />换一批</div>
+      <div @click="$emit('sort-list')"><van-icon name="replay" />换一批</div>
     </div>
     <div class="content">
       <van-tag

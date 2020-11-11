@@ -6,7 +6,11 @@
         <van-icon name="arrow-left" />
       </div>
       <div class="center-input">
-        <input type="text" v-model.trim="value" @input="toFindresult" />
+        <input
+          type="text"
+          v-model.trim="value"
+          @focus="showSuggetion = false"
+        />
       </div>
       <div class="search-button">
         <button type="button" @click="toSearch">搜索</button>
@@ -16,7 +20,7 @@
     <div class="middle-content">
       <div v-if="!showSuggetion">
         <!-- 推荐栏 -->
-        <recommend :rcmdList="rcmdList"></recommend>
+        <recommend :rcmdList="rcmdList" @sort-list="sort"></recommend>
         <!-- 历史搜索 -->
         <history
           :historyList="historyList"
@@ -74,13 +78,27 @@ export default {
       setItem('historyList', this.historyList)
       // this.value = ''
       this.showSuggetion = true
+
+      this.value = ''
     },
     removeHistory () {
       removeItem('historyList')
       this.historyList = []
     },
-    toFindresult () {
-      this.showSuggetion = this.value.length !== 0
+    // toFindresult () {
+    //   this.showSuggetion = this.value.length !== 0
+    // },
+    // 推荐数组随机排序
+    sort () {
+      const cloneArr = this.rcmdList.concat()
+      const len = cloneArr.length
+      for (var i = 0; i < len; i++) {
+        const index = Math.floor(Math.random() * cloneArr.length)
+        const temp = cloneArr[index]
+        cloneArr[index] = cloneArr[i]
+        cloneArr[i] = temp
+      }
+      this.rcmdList = cloneArr
     }
   }
 }

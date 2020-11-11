@@ -13,8 +13,12 @@ const routes = [
 
     children: [
       { path: '/my', component: () => import('../views/My') },
-      { path: '/bookmall', component: () => import('../views/BookMall') },
-      { path: '/bookrack', component: () => import('../views/BookRack') },
+      { path: '/bookmall', component: () => import('../views/BookMall'), meta: { index: 4 } },
+      {
+        path: '/bookrack',
+        component: () => import('../views/BookRack'),
+        meta: { index: 4 }
+      },
       { path: '/account', component: () => import('../views/My/components/account.vue') }
     ]
   },
@@ -24,12 +28,15 @@ const routes = [
     name: 'DetailsIndex',
     path: '/details/:bookId',
     component: () => import('../views/BookRack/Details.vue'),
+    meta: { index: 1 },
     props: true
   },
   { path: '/information', component: () => import('../views/BookRack/Information.vue') },
   { path: '/special', component: () => import('../views/BookRack/Special.vue') },
   { path: '/gender', component: () => import('../views/Gender') },
-  { path: '/register', component: () => import('../views/Register') }
+  { path: '/register', component: () => import('../views/Register') },
+  { path: '/booktypes', component: () => import('../views/BookTypes'), meta: { index: 3 } },
+  { path: '/Nexttypes', component: () => import('../views/BookTypes/NextTypes'), meta: { index: 2 } }
 
 ]
 

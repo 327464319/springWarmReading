@@ -60,7 +60,16 @@ export default {
           '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/2f34c4f7dd6eac9be4d04461ba5aed44.jpg',
           '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/6c93c84020a960c035585a521a4662fa.jpg'
         ]
-      }]
+      },
+      {
+        id: 8,
+        cate_name: '武侠',
+        images: ['//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/ee2c52bf31247c24949da77dd887a5bc.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/2f34c4f7dd6eac9be4d04461ba5aed44.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/6c93c84020a960c035585a521a4662fa.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/ee2c52bf31247c24949da77dd887a5bc.jpg']
+      }
+      ]
     }
   },
   'http://localhost:8080/getBooksBycate|get': option => {

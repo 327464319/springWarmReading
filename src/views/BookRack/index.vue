@@ -223,14 +223,14 @@ export default {
       console.log(this.bookList)
     },
     onclick (id) {
-      // 设置默认id
-      if (getItem('id') === null) {
-        setItem('id', 1)
-      }
-
-      this.getBooks()
       setItem('id', id)
       if (!this.isDeleteShow) {
+        // 设置默认id
+        if (getItem('id') === null) {
+          setItem('id', 1)
+        }
+
+        this.getBooks()
         this.$router.push('/details/1')
       }
     }

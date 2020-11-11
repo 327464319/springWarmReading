@@ -392,14 +392,12 @@ export default {
       this.$refs.bookRef.next()
     },
     checkChapter (data) {
-      console.log(data)
       this.catalogLeftShow = false
       this.bookId = data.bookId
       this.chapterId = data.chapterId
       this.swipeContrlId = data.setionId
       this.loadBookDdata()
 
-      console.log(this.list)
       // 设置跳转到选中文章目录中的小节
       this.setionId = data.setionId
     },
@@ -419,7 +417,6 @@ export default {
 
       this.chapterId = res[0].chapter_id
       this.list = res[0].setions
-      console.log('created -> this.list', this.list)
     },
     // 检查章节是否已付费方法
     inspectBuiedChapterId (chapterId) {

@@ -25,7 +25,7 @@ const routes = [
       { name: 'MyAccount', path: '/account', component: () => import('../views/My/components/account.vue'), props: true }
     ]
   },
-  { path: '/login', component: () => import('../views/Login') },
+  // { path: '/login', component: () => import('../views/Login') },
   { path: '/search', component: () => import('../views/BookRack/RankSearch') },
   {
     name: 'DetailsIndex',

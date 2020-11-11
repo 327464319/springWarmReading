@@ -1,19 +1,16 @@
 <template>
-  <div class="listContain" ref="listRef">
-    <van-list
-      ref="ListRef"
-      v-model="loading"
-      :finished="finished"
-      finished-text="没有更多了"
-      @load="onLoad"
-      :error.sync="error"
-      error-text="请求失败，点击重新加载"
-    >
-      <book-item
-        :bookitem="item"
-        v-for="(item, index) in list"
-        :key="index + 'c'"
-      ></book-item>
+  <div class="listContain"
+       ref="listRef">
+    <van-list ref="ListRef"
+              v-model="loading"
+              :finished="finished"
+              finished-text="没有更多了"
+              @load="onLoad"
+              :error.sync="error"
+              error-text="请求失败，点击重新加载">
+      <book-item :bookitem="item"
+                 v-for="(item, index) in list"
+                 :key="index + 'c'"></book-item>
     </van-list>
   </div>
 </template>

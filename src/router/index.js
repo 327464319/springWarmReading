@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 const Home = () => import('../views/Home.vue')
 
 Vue.use(VueRouter)
@@ -25,8 +26,8 @@ const routes = [
       { name: 'MyAccount', path: '/account', component: () => import('../views/My/components/account.vue'), props: true }
     ]
   },
-  { path: '/login', component: () => import('../views/Login') },
-  { path: '/search', component: () => import('../views/BookRack/RankSearch') },
+  // { path: '/login', component: () => import('../views/Login') },
+  { path: '/search', component: () => import('../views/BookRack/RankSearch'), meta: { index: -3 } },
   {
     name: 'DetailsIndex',
     path: '/details/:bookId',
@@ -41,7 +42,9 @@ const routes = [
   { path: '/register', component: () => import('../views/Register') },
   { path: '/booktypes', component: () => import('../views/BookTypes'), meta: { index: 3 } },
   { path: '/Nexttypes', component: () => import('../views/BookTypes/NextTypes'), meta: { index: 2 } },
-  { path: '/booklist', component: () => import('@/views/BookMall/BookList.vue') }
+  { path: '/booklist', component: () => import('@/views/BookMall/BookList.vue') },
+  { path: '/bookinterface', name: 'bookInterface', component: () => import('../views/BookMall/book-interface/index.vue'), prop: true, meta: { index: -1 } },
+  { path: '/bulkbuy', name: 'BulkBuy', component: () => import('../views/BookMall/book-interface/components/bulk-buy.vue') }
 
 ]
 

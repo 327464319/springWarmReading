@@ -107,7 +107,7 @@ export default {
       try {
         const queryinfo = window.localStorage.getItem('user')
         const { data } = await axios.get('http://localhost:8080/getuserInfo', { params: queryinfo })
-        console.log('LoaduserInfo -> data', data)
+        // console.log('LoaduserInfo -> data', data)
 
         this.userlist = data.data
 
@@ -117,7 +117,7 @@ export default {
         // this.user = window.localStorage.getItem('user')
         // this.user = JSON.parse(this.user)
 
-        console.log('LoaduserInfo ->  this.user', this.user)
+        // console.log('LoaduserInfo ->  this.user', this.user)
       } catch (err) {
         this.$router('获取用户数据失败')
       }

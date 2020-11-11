@@ -8,7 +8,7 @@
 />
 <!-- 显示余额 -->
 <van-cell icon="location-o"   title="余额"
-  >{{userlist.accountBalance}}</van-cell>
+  >{{ userlist.accountBalance}}</van-cell>
 <!-- 充值框 -->
 <van-cell icon="location-o"   title="充值春卷"
   />
@@ -46,6 +46,7 @@ export default {
     return {
       isPostShow: false,
       price: 0
+
     }
   },
   methods: {
@@ -57,7 +58,7 @@ export default {
 
   },
   created () {
-    console.log(this.userlist)
+    console.log(this.$router)
   }
 
 }
@@ -70,13 +71,13 @@ export default {
   border: 1px solid #F5F7F9;
 }
 ::v-deep .my-account{
-  background-color:#3296FA ;
+  background-color:rosybrown ;
 }
 ::v-deep .van-icon-arrow-left{
-  color: #fff;
+  color: black;
 }
 ::v-deep .van-nav-bar__title {
-  color: #fff;
+  color: black;
 
 }
 

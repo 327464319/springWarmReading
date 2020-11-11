@@ -18,7 +18,8 @@ const routes = [
   //   ]
   // },
   { path: '/login', component: () => import('../views/Login') },
-  { path: '/', component: () => import('../views/BookMall/book-interface/index.vue') }
+  { path: '/', component: () => import('../views/BookMall/book-interface/index.vue'), prop: true },
+  { path: '/bulkbuy', name: 'BulkBuy', component: () => import('../views/BookMall/book-interface/components/bulk-buy.vue') }
 
 ]
 

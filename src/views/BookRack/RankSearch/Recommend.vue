@@ -10,7 +10,6 @@
         v-for="item in rcmdList"
         :key="item.rcmdId"
         class="list-item"
-        color="#666"
       >
         {{ item.name }}
       </van-tag>
@@ -51,6 +50,13 @@ export default {
     margin: 0 14px;
     .list-item {
       margin: 6px;
+      background-color: #666;
+      &:nth-child(2n) {
+        background-color: #777;
+      }
+      &:nth-child(3n) {
+        background-color: #999;
+      }
     }
   }
 }

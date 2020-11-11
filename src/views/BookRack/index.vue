@@ -75,8 +75,10 @@
           @click-right="onClickRight"
         >
           <template #title>
-            最近阅读
-            <van-icon name="ascending" size="18" class="ascending-icon" />
+            <div @click="tooglesort">
+              {{ toggletitle ? "加入书架时间" : "最近阅读" }}
+              <van-icon name="ascending" size="18" class="ascending-icon" />
+            </div>
           </template>
         </van-nav-bar>
       </van-row>
@@ -147,7 +149,10 @@ export default {
       isSearchShow: false, // 更多显示与隐藏
       isDeleteShow: false, // 删除按钮显示与隐藏
       result: [],
-      toDeleteshow: false // 删除弹出框
+      toDeleteshow: false, // 删除弹出框
+      toggletitle: false, // 书籍排序切换
+      newReadList: [] // 根据加入时间排序
+
     }
   },
   mounted () {
@@ -155,45 +160,16 @@ export default {
     if (getItem('id') === null) {
       setItem('id', 1)
     }
-    if (getItem('bookList') !== null) {
-      const data = getItem('bookList')
-      // console.log(data)
-      const id = getItem('id') - 0
-      let index = 0
-      data.forEach(v => {
-        if (v.books_id === id) {
-          index = v.books_id
-          return ''
-        }
-      })
-      //
-      const newBook = data.filter(v => {
-        return v.books_id === index
-      })
-      // console.log(newBook)
 
-      // 4
-      const arr = data.filter(bookItem => {
-        return bookItem.books_id !== newBook[0].books_id
-      })
-      // 5
-      // console.log(arr)
-      // console.log(newBook[0])
-      arr.unshift(newBook[0])
-      this.bookList = arr
-      setItem('bookList', arr)
-      this.firstbook = arr[0]
-    } else {
-      this.getBooks()
-    }
+    this.getBooks()
   },
   methods: {
     async getBooks () {
       try {
         const { data: res } = await getBookList()
-        console.log(res)
+        // console.log(res)
         if (res.status !== 200) return this.$toast.fail('获取书籍列表失败！')
-        const id = window.localStorage.getItem('id') - 0
+        const id = getItem('id') - 0
         let index = 0
         res.data.forEach(v => {
           if (v.books_id === id) {
@@ -210,8 +186,8 @@ export default {
         })
         res.data.unshift(data[0])
         this.bookList = res.data
-        setItem('bookList', res.data)
         this.firstbook = this.bookList[0]
+        setItem('bookList', this.bookList)
         this.$toast.success('获取书籍列表成功！')
       } catch (error) {
         this.$toast.fail('获取书籍列表失败！请稍后重试')
@@ -235,7 +211,6 @@ export default {
       } else {
         if (this.result.length === this.bookList.length) {
           this.bookList = []
-          setItem('bookList', null)
         } else {
           for (const item of this.result) {
             console.log(item)
@@ -248,17 +223,54 @@ export default {
             setItem('id', this.bookList[0].books_id)
             console.log(1)
           }
-          setItem('bookList', this.bookList)
         }
       }
       this.result = []
       console.log(this.bookList)
     },
     onclick (id) {
+      // 设置默认id
+      if (getItem('id') === null) {
+        setItem('id', 1)
+      }
+
       setItem('id', id)
       if (!this.isDeleteShow) {
+        // 设置默认id
+        if (getItem('id') === null) {
+          setItem('id', 1)
+        }
+        this.getBooks()
         this.$router.push('/details/1')
       }
+    },
+    tooglesort () {
+      this.toggletitle = !this.toggletitle
+      if (this.toggletitle) {
+        this.toSortCreatedList()
+        this.bookList = getItem('toggleList')
+      } else {
+        this.bookList = getItem('bookList')
+      }
+    },
+    toSortCreatedList () {
+      const toggleList = this.bookList
+      // 修改格式 con2010-10-12 12：30：25 改变为 100002551515
+      toggleList.forEach((item, index) => {
+        item.book_createTime = +new Date(item.book_createTime)
+      })
+      console.log(toggleList) // 时间越大越近添加
+      // 通过数字大小进行冒泡排序
+      for (let i = 0; i < toggleList.length - 1; i++) {
+        for (let j = 0; j < toggleList.length - 1 - i; j++) {
+          if (toggleList[j].book_createTime > toggleList[j + 1].book_createTime) {
+            var temp = toggleList[j]
+            toggleList[j] = toggleList[j + 1]
+            toggleList[j + 1] = temp
+          }
+        }
+      }
+      return setItem('toggleList', toggleList)
     }
 
   }

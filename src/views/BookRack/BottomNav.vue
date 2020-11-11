@@ -1,16 +1,38 @@
+import { mapState } from 'vuex';
 <template>
   <div>
     <div class="bottom_nav">
       <div>下载</div>
       <div>免费试读</div>
-      <div>加入书架</div>
+      <div @click="addBookMall"
+           v-if="isAddShow">加入书架</div>
+      <div v-else-if="!isAddShow">
+        <span>
+          <van-icon name="coupon-o" />
+        </span>
+        <span @click="addBookMall">已加入</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-
+  name: 'BottomNav',
+  data () {
+    return {
+      isAddShow: true
+    }
+  },
+  methods: {
+    addBookMall () {
+      this.isAddShow = !this.isAddShow
+    }
+  },
+  computed: {
+    ...mapState(['user'])
+  }
 }
 </script>
 
@@ -31,6 +53,20 @@ export default {
   :nth-child(1),
   :nth-child(3) {
     width: 28%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    :nth-child(1) {
+      color: blue;
+      padding-top: 2px;
+      margin-right: 1px;
+      font-size: 30px;
+    }
+    :nth-child(2) {
+      background: #fff;
+      color: black;
+      width: 60%;
+    }
   }
   :nth-child(2) {
     background-color: #ff6666;

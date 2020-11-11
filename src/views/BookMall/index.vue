@@ -7,7 +7,10 @@
         <van-search v-model="value" placeholder="春暖书城" />
       </template>
       <template #right>
-        <van-icon name="weapp-nav"></van-icon>
+        <van-icon
+          name="weapp-nav"
+          @click="$router.push('/booktypes')"
+        ></van-icon>
       </template>
     </van-nav-bar>
     <!-- 主体 -->
@@ -43,7 +46,62 @@ export default {
     return {
       value: '',
       active: 0,
-      catesList: []
+      catesList: [{
+        id: 1,
+        cate_name: '精选',
+        images: ['//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/ee2c52bf31247c24949da77dd887a5bc.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/2f34c4f7dd6eac9be4d04461ba5aed44.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/6c93c84020a960c035585a521a4662fa.jpg'
+        ]
+      },
+      {
+        id: 2,
+        cate_name: '男频',
+        images: ['//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/dc7488316053c842a9aab699d4b23fc0.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/91db4f89fbad5a6157a1053867197d5e.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/62159770066a1ddb0122bfdd43181774.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/f3fbf64bbd80df576f8a6e6ad91597b7.jpg']
+      },
+      {
+        id: 3,
+        cate_name: '女频',
+        images: ['//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/ee2c52bf31247c24949da77dd887a5bc.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/2f34c4f7dd6eac9be4d04461ba5aed44.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/6c93c84020a960c035585a521a4662fa.jpg'
+        ]
+      },
+      {
+        id: 4,
+        cate_name: '免费',
+        images: ['//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/dc7488316053c842a9aab699d4b23fc0.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/91db4f89fbad5a6157a1053867197d5e.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/62159770066a1ddb0122bfdd43181774.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/f3fbf64bbd80df576f8a6e6ad91597b7.jpg']
+      },
+      {
+        id: 5,
+        cate_name: '热评',
+        images: ['//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/ee2c52bf31247c24949da77dd887a5bc.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/2f34c4f7dd6eac9be4d04461ba5aed44.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/6c93c84020a960c035585a521a4662fa.jpg'
+        ]
+      },
+      {
+        id: 6,
+        cate_name: '新书',
+        images: ['//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/ee2c52bf31247c24949da77dd887a5bc.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/2f34c4f7dd6eac9be4d04461ba5aed44.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/6c93c84020a960c035585a521a4662fa.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/ee2c52bf31247c24949da77dd887a5bc.jpg']
+      },
+      {
+        id: 7,
+        cate_name: '完本',
+        images: ['//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/ee2c52bf31247c24949da77dd887a5bc.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/2f34c4f7dd6eac9be4d04461ba5aed44.jpg',
+          '//bossaudioandcomic-1252317822.image.myqcloud.com/activity/document/6c93c84020a960c035585a521a4662fa.jpg'
+        ]
+      }]
 
     }
   },
@@ -54,9 +112,13 @@ export default {
       if (res.status !== 200) return this.$toast.fail('获取分类列表失败！')
       this.catesList = res.data
     }
+
   },
   created () {
     this.getCates()
+  },
+  mounted () {
+
   }
 
 }
@@ -76,14 +138,14 @@ export default {
   }
 
   width: 280px;
-  background: #ffffff;
+  background: #fff;
   .van-icon-search {
     font-size: 30px;
     color: #333;
   }
 }
 .van-icon-weapp-nav {
-  font-size: 30px;
+  font-size: 25px;
   color: #333;
 }
 
@@ -108,5 +170,8 @@ export default {
 .van-tabs {
   position: fixed;
   top: 45px;
+}
+.van-search {
+  padding: 0;
 }
 </style>

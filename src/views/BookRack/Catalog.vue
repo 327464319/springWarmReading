@@ -7,7 +7,8 @@
     <div class="catalog_right">
       <span>连载中</span>
       <span>
-        <van-icon name="arrow" />
+        <van-icon name="arrow"
+                  @click="$router.back()" />
       </span>
     </div>
   </div>

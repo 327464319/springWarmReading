@@ -15,7 +15,7 @@ const routes = [
       { path: '/bookrack', component: () => import('../views/BookRack') }
     ]
   },
-  { path: '/login', component: () => import('../views/Login') },
+  { path: '/login', name: 'login', component: () => import('../views/Login') },
   { path: '/gender', component: () => import('../views/Gender') },
   { path: '/register', component: () => import('../views/Register') }
 

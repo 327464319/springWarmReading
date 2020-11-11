@@ -35,14 +35,18 @@
 </template>
 
 <script>
+import { getuserInfo } from '../../../api/users'
 import PayMoney from '../components/pay-money'
 export default {
   name: 'MyAccount',
-  props: {
-    userlist: {
-      type: Object
-    }
-  },
+  // props: {
+  //   userId: {
+  //     type: [Number, Object, String],
+  //     required: true
+
+  //   }
+
+  // },
   components: {
     PayMoney
 
@@ -50,10 +54,16 @@ export default {
   data () {
     return {
       isPostShow: false,
-      price: 0
+      price: 0,
+      userlist: {}
 
     }
   },
+  created () {
+    // console.log(this.$router)
+    this.loaduserInfo()
+  },
+
   methods: {
     addCount (event) {
       this.isPostShow = false
@@ -63,11 +73,23 @@ export default {
       this.isPostShow = true
       this.price = e
       // console.log(e)
+    },
+    // 根据用户的ID传余额accountbalance
+    async loaduserInfo (id) {
+      console.log(this.$route.query.userId)
+      try {
+        const { data } = await getuserInfo({ userId: this.$route.query.userId })
+
+        console.log('loaduserInfo -> data', data)
+        this.userlist = data.data
+        console.log('loaduserInfo -> this.userlist', this.userlist)
+      } catch (err) {
+        // console.log('loaduserInfo -> err', err)
+
+        this.$toast('获取数据失败')
+      }
     }
 
-  },
-  created () {
-    // console.log(this.$router)
   }
 
 }

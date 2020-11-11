@@ -5,12 +5,12 @@
 
     <!-- 男生女生模块 -->
     <div class="sex">
-      <div class="icon" :class="isCon?'':'con'" @click="isCon=false">
+      <div class="icon" :class="isCon==='1'?'con':''" @click="isCon='1'">
         <van-image class="sheng" round width="100px" height="100px" fit="cover" @click="man" :src="require('../../assets/boy-3.png')" />
         <span class="text">男生</span>
         <span class="text-two">热血爽文,酷帅狂拽</span>
       </div>
-      <div class="icon" :class="isCon?'con':''" @click="isCon=true">
+      <div class="icon" :class="isCon==='2'?'con':''" @click="isCon='2'">
         <van-image round width="100px" height="100px" @click="woman" fit="cover" :src="require('../../assets/girl-26.png')" />
         <span class="text">女生</span>
         <span class="text-two">总裁王爷,绝不将就</span>
@@ -31,7 +31,7 @@ export default {
   data () {
     return {
       index: null,
-      isCon: false
+      isCon: '0'
 
     }
   },
@@ -42,13 +42,17 @@ export default {
       } else {
         this.$toast.loading({
           message: '加载中...',
-          forbidClick: true
+          forbidClick: true,
+          duration: 0
         })
       }
       window.localStorage.setItem('sex', this.index)
+      this.$router.push('/bookrack')
+      this.$toast.success('进入书城')
     },
     man (index) {
       this.index = 0
+      this.isCon = !this.isCon
     },
     woman (index) {
       this.index = 1

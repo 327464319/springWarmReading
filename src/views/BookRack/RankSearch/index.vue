@@ -70,7 +70,6 @@ export default {
     toSearch () {
       // console.log(this.value)
       // 历史记录查重
-      console.log(this.value.length)
       if (this.value.length === 0) {
         this.$toast.fail('请输入要搜索的关键字')
       } else {

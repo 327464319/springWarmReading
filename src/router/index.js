@@ -19,7 +19,10 @@ const routes = [
         component: () => import('../views/BookRack'),
         meta: { index: 4 }
       },
-      { path: '/account', component: () => import('../views/My/components/account.vue') }
+      { path: '/account', component: () => import('../views/My/components/account.vue') },
+      { path: '/bookmall', component: () => import('../views/BookMall') },
+      { path: '/bookrack', component: () => import('../views/BookRack') },
+      { name: 'MyAccount', path: '/account', component: () => import('../views/My/components/account.vue'), props: true }
     ]
   },
   { path: '/login', component: () => import('../views/Login') },

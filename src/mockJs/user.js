@@ -7,7 +7,7 @@ export default {
       msg: '获取用户信息成功',
       data: {
         username: '变秃变强',
-        nickname: ''
+        accountBalance: '66'
       }
     }
   }

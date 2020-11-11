@@ -1,11 +1,14 @@
 <template>
   <div class="pay-container">
-    <van-nav-bar
+    <van-nav-bar title="充值金额">
 
-  left-arrow
-  @click="$router.back()"
+</van-nav-bar>
+ <div class="money-box">
 
-/>
+   <div class="money">¥{{price}}</div>
+
+  </div>
+
 <van-cell title="订单信息" value="手机充值" />
 <van-cell title="付款方式" is-link  value="花呗" />
 <div class="btn">
@@ -17,7 +20,14 @@
 
 <script>
 export default {
-  name: 'PayMoney'
+  name: 'PayMoney',
+  props: {
+    price: {
+      type: [Number, String],
+      required: true
+    }
+
+  }
 
 }
 </script>
@@ -29,7 +39,8 @@ export default {
 
      .van-button{
      background-color: #3296FA;
-     width: 96%;
+     width: 90%;
+     margin-top:150px ;
 
   }
 
@@ -38,6 +49,22 @@ export default {
    .van-icon-arrow-left{
       color: red;
 
+  }
+
+  }
+  ::v-deep .van-nav-bar__title{
+    color:black !important;
+  }
+  .money-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .money{
+    width: 50%;
+    height: 100px;
+    // background-color: #3296FA ;
+    text-align: center;
+    line-height: 100px;
   }
 
   }

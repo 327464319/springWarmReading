@@ -28,18 +28,22 @@
       is-link />
     <van-cell icon="location-o"  title="我的阅读基因"
       is-link />
-    <van-cell icon="location-o"  title="设置"
+       <van-cell icon="location-o"  title="设置"
       is-link />
+    <van-cell class="goout" title="退出登录"
+    @click="onLogout"
+      />
 
     </div>
 
       <!-- 未登录 -->
     <div class="no-login" v-else>
       <van-image round
+        fit="cover"
         class="avatar"
         lazy-load
         src="https://img.yzcdn.cn/vant/cat.jpeg"/>
-      <button @click="$router.push('/login')">去登录</button>
+      <button @click="$router.push('/login')" class="login">去登录</button>
       </div>
 
   </div>
@@ -70,6 +74,19 @@ export default {
     this.LoaduserInfo(this.user)
   },
   methods: {
+    onLogout () {
+      // 退出提示
+      // 在组件中需要使用this.$dialog来调用弹框组件
+      this.$dialog.confirm({
+        title: '确认退出吗？'
+      }).then(() => {
+        // on confirm
+        // 确认退出：清除登录状态(容器中的user+本地存储中的user)
+        this.$store.commit('setUser')
+      }).catch(() => {
+        console.log('取消执行这里')
+      })
+    },
     async LoaduserInfo () {
       try {
         const { data } = await axios.get('http://localhost:8080/getuserInfo')
@@ -99,7 +116,7 @@ export default {
     margin-bottom: 10px;
   }
   .box {
-    height: 300px;
+    height: 220px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -109,7 +126,7 @@ export default {
     background-size: cover;
   }
   .no-login{
-   height: 300px;
+   height: 220px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,6 +134,12 @@ export default {
     background-color: #3296FA;
     background-image: url("../../assets/banner.png");
     background-size: cover;
+    .login{
+      border: 0;
+      background-color: #3296FA;
+      color: #fff;
+      font-size: 20px;
+    }
 
   }
  ::v-deep .text{
@@ -127,6 +150,18 @@ export default {
     font-weight: 400;
     color: #fff;
    text-align: center;
+  }
+
+}
+.userInfo{
+  overflow-y: auto;
+  height: 92vh;
+}
+.goout{
+  .van-cell__title{
+    text-align: center;
+    color:#D86262;
+
   }
 
 }

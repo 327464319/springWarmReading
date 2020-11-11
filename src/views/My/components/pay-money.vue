@@ -12,21 +12,29 @@
 <van-cell title="订单信息" value="手机充值" />
 <van-cell title="付款方式" is-link  value="花呗" />
 <div class="btn">
-  <van-button type="primary" size="large">立即付款</van-button>
+  <van-button type="primary" size="large" @click="isPasswordshow=true" class="paymoney">立即付款</van-button>
 </div>
 
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'PayMoney',
+
   props: {
     price: {
       type: [Number, String],
       required: true
     }
 
+  },
+  data () {
+    return {
+      isPasswordshow: false
+
+    }
   }
 
 }
@@ -34,6 +42,7 @@ export default {
 
 <style lang="scss" scoped>
  .pay-container{
+
   .btn{
     text-align: center;
 
@@ -67,6 +76,9 @@ export default {
     line-height: 100px;
   }
 
+  }
+  .paymoney{
+    bottom: 100px;
   }
 
 }

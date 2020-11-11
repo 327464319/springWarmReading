@@ -6,6 +6,9 @@
    left-arrow
    @click-left="$router.back()"
 />
+<!-- 显示余额 -->
+<van-cell icon="location-o"   title="余额"
+  >{{ userlist.accountBalance}}</van-cell>
 <!-- 充值框 -->
 <van-cell icon="location-o"   title="充值春卷"
   />
@@ -29,7 +32,12 @@
 <script>
 import PayMoney from '../components/pay-money'
 export default {
-  name: 'Account',
+  name: 'MyAccount',
+  props: {
+    userlist: {
+      type: Object
+    }
+  },
   components: {
     PayMoney
 
@@ -38,6 +46,7 @@ export default {
     return {
       isPostShow: false,
       price: 0
+
     }
   },
   methods: {
@@ -47,6 +56,9 @@ export default {
       // console.log(e)
     }
 
+  },
+  created () {
+    console.log(this.$router)
   }
 
 }
@@ -59,13 +71,13 @@ export default {
   border: 1px solid #F5F7F9;
 }
 ::v-deep .my-account{
-  background-color:#3296FA ;
+  background-color:rosybrown ;
 }
 ::v-deep .van-icon-arrow-left{
-  color: #fff;
+  color: black;
 }
 ::v-deep .van-nav-bar__title {
-  color: #fff;
+  color: black;
 
 }
 

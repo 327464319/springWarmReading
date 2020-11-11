@@ -6,7 +6,8 @@ export default {
       status: 200,
       msg: '获取用户信息成功',
       data: {
-        username: '变秃变强',
+        userId: 11313,
+        username: '变秃变强13131',
         accountBalance: '66'
       }
     }

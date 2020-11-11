@@ -14,7 +14,7 @@
       is-link>
       <van-button round
       class="user-btn"
-        size="mini" :to='{name:"MyAccount",params:{userlist:userlist}}'>立即充值</van-button>
+        size="mini" :to='{path:"/account",query:{userId:userlist.userId}}'>立即充值</van-button>
     </van-cell>
     <van-cell icon="like-o"   title="我的阅历"
       is-link />

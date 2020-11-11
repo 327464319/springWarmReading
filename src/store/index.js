@@ -15,7 +15,7 @@ export default new Vuex.Store({
       state.user = ''
 
       // 为了防止刷新丢失，我们需要把数据备份到本地存储
-      localStorage.removeItem('user')
+      window.localStorage.removeItem('user')
     }
 
   },

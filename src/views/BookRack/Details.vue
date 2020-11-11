@@ -2,13 +2,21 @@
   <div class="details-container">
     <div class="header">
       <van-icon name="arrow-left"
+<<<<<<< HEAD
+                @click="$router.back()" />
+=======
         @click="$router.back()" />
+>>>>>>> 1863d2de026628589cd4f9cdc6df32522d365918
     </div>
     <div class="box">
       <div class="books_introduce">
         <div class="introduce_left">
           <van-image fit="cover"
+<<<<<<< HEAD
+                     src="https://wfqqreader-1252317822.image.myqcloud.com/cover/735/357735/b_357735.jpg" />
+=======
             src="https://wfqqreader-1252317822.image.myqcloud.com/cover/735/357735/b_357735.jpg" />
+>>>>>>> 1863d2de026628589cd4f9cdc6df32522d365918
         </div>
         <div class="introduce_right">
           <div class="books_name">
@@ -65,28 +73,44 @@
             <span>
               <van-icon name="replay" />
             </span>
-            <span>换一换</span>
+            <span class="pdr">换一换</span>
           </div>
         </div>
         <div class="popular_books_bottom">
           <div class="popular_books_cover">
             <van-image fit="cover"
+<<<<<<< HEAD
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/75/33812075/b_33812075.jpg" />
+=======
               src="https://wfqqreader-1252317822.image.myqcloud.com/cover/75/33812075/b_33812075.jpg" />
+>>>>>>> 1863d2de026628589cd4f9cdc6df32522d365918
             <div class="popular_books_name">九天帝尊</div>
           </div>
           <div class="popular_books_cover">
             <van-image fit="cover"
+<<<<<<< HEAD
+                       src="https://www.zhetian.org/public/cover/bd/64/6e/bd646ed67ecab483539b2185fb56a64b.jpg" />
+=======
               src="https://www.zhetian.org/public/cover/bd/64/6e/bd646ed67ecab483539b2185fb56a64b.jpg" />
+>>>>>>> 1863d2de026628589cd4f9cdc6df32522d365918
             <div class="popular_books_name">太古战天诀</div>
           </div>
           <div class="popular_books_cover">
             <van-image fit="cover"
+<<<<<<< HEAD
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/783/818783/b_818783.jpg" />
+=======
               src="https://wfqqreader-1252317822.image.myqcloud.com/cover/783/818783/b_818783.jpg" />
+>>>>>>> 1863d2de026628589cd4f9cdc6df32522d365918
             <div class="popular_books_name">八荒剑神</div>
           </div>
           <div class="popular_books_cover">
             <van-image fit="cover"
+<<<<<<< HEAD
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/365/31449365/b_31449365.jpg" />
+=======
               src="https://wfqqreader-1252317822.image.myqcloud.com/cover/365/31449365/b_31449365.jpg" />
+>>>>>>> 1863d2de026628589cd4f9cdc6df32522d365918
             <div class="popular_books_name">七届武神</div>
           </div>
         </div>
@@ -104,22 +128,38 @@
         <div class="popular_books_bottom">
           <div class="popular_books_cover">
             <van-image fit="cover"
+<<<<<<< HEAD
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/735/357735/b_357735.jpg" />
+=======
               src="https://wfqqreader-1252317822.image.myqcloud.com/cover/735/357735/b_357735.jpg" />
+>>>>>>> 1863d2de026628589cd4f9cdc6df32522d365918
             <div class="popular_books_name">择天记</div>
           </div>
           <div class="popular_books_cover">
             <van-image fit="cover"
+<<<<<<< HEAD
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/952/462952/b_462952.jpg" />
+=======
               src="https://wfqqreader-1252317822.image.myqcloud.com/cover/952/462952/b_462952.jpg" />
+>>>>>>> 1863d2de026628589cd4f9cdc6df32522d365918
             <div class="popular_books_name">将夜</div>
           </div>
           <div class="popular_books_cover">
             <van-image fit="cover"
+<<<<<<< HEAD
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/39/469039/b_469039.jpg" />
+=======
               src="https://wfqqreader-1252317822.image.myqcloud.com/cover/39/469039/b_469039.jpg" />
+>>>>>>> 1863d2de026628589cd4f9cdc6df32522d365918
             <div class="popular_books_name">间客</div>
           </div>
           <div class="popular_books_cover">
             <van-image fit="cover"
+<<<<<<< HEAD
+                       src="https://wfqqreader-1252317822.image.myqcloud.com/cover/592/462592/b_462592.jpg" />
+=======
               src="https://wfqqreader-1252317822.image.myqcloud.com/cover/592/462592/b_462592.jpg" />
+>>>>>>> 1863d2de026628589cd4f9cdc6df32522d365918
             <div class="popular_books_name">庆余年</div>
           </div>
         </div>
@@ -303,9 +343,13 @@ export default {
   }
   .box {
     position: fixed;
-    overflow: auto;
+    overflow-y: aoto;
+    overflow-x: hidden;
     top: 50px;
     bottom: 45px;
+  }
+  .pdr {
+    padding-right: 10px;
   }
 }
 </style>

@@ -6,6 +6,9 @@
    left-arrow
    @click-left="$router.back()"
 />
+<!-- 显示余额 -->
+<van-cell icon="location-o"   title="余额"
+  >{{userlist.accountBalance}}</van-cell>
 <!-- 充值框 -->
 <van-cell icon="location-o"   title="充值春卷"
   />
@@ -29,7 +32,12 @@
 <script>
 import PayMoney from '../components/pay-money'
 export default {
-  name: 'Account',
+  name: 'MyAccount',
+  props: {
+    userlist: {
+      type: Object
+    }
+  },
   components: {
     PayMoney
 
@@ -47,6 +55,9 @@ export default {
       // console.log(e)
     }
 
+  },
+  created () {
+    console.log(this.userlist)
   }
 
 }

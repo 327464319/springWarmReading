@@ -14,21 +14,19 @@
       is-link>
       <van-button round
       class="user-btn"
-        size="mini" to='/account'>立即充值</van-button>
+        size="mini" :to='{name:"MyAccount",params:{userlist:userlist}}'>立即充值</van-button>
     </van-cell>
-    <van-cell icon="location-o"   title="我的阅历"
+    <van-cell icon="like-o"   title="我的阅历"
       is-link />
-    <van-cell icon="location-o"  title="充值记录"
+    <van-cell icon="gem-o"  title="充值记录"
       is-link />
-    <van-cell icon="location-o"  title="购买记录"
+    <van-cell icon="balance-o"  title="购买记录"
       is-link />
-    <van-cell icon="location-o"  title="单元格"
+    <van-cell icon="search"  title="浏览历史"
       is-link />
-    <van-cell icon="location-o"  title="浏览历史"
+    <van-cell icon="points"  title="我的阅读基因"
       is-link />
-    <van-cell icon="location-o"  title="我的阅读基因"
-      is-link />
-       <van-cell icon="location-o"  title="设置"
+       <van-cell icon="award-o"  title="设置"
       is-link />
     <van-cell class="goout" title="退出登录"
     @click="onLogout"
@@ -38,12 +36,28 @@
 
       <!-- 未登录 -->
     <div class="no-login" v-else>
-      <van-image round
+      <!-- <van-image round
         fit="cover"
         class="avatar"
         lazy-load
-        src="https://img.yzcdn.cn/vant/cat.jpeg"/>
-      <button @click="$router.push('/login')" class="login">去登录</button>
+        src="../../assets/mobile.png"/> -->
+       <div class="login-photo"> <img class="mobile-img" src="../../assets/mobile.png"/></div>
+      <button @click="$router.push('/login')" class="login">登录</button>
+      </div>
+      <!-- 宫格导航 -->
+      <div v-if="!this.user">
+         <van-grid :column-num="2" clickable>
+          <van-grid-item class="gridItem"  >
+            <i slot="icon" class="toutiao toutiao-shoucang"></i>
+            <span slot="text" class="text">收藏</span>
+          </van-grid-item>
+           <van-grid-item class="gridItem"  >
+             <i slot="icon" class="toutiao toutiao-lishi"></i>
+             <span slot="text" class="text">历史</span>
+           </van-grid-item>
+      </van-grid>
+        <van-cell title="消息通知" is-link  class="titleText"/>
+
       </div>
 
   </div>
@@ -54,14 +68,16 @@
 // import { getuserInfo } from '../../mockJs/my-index'
 import axios from 'axios'
 import { mapState } from 'vuex'
-
+import '../../style/myicon.scss'
 export default {
   components: {
 
   },
   data () {
     return {
-      isLoginShow: false
+      isLoginShow: false,
+      userlist: []
+
       // user: ''
 
     }
@@ -89,8 +105,11 @@ export default {
     },
     async LoaduserInfo () {
       try {
-        const { data } = await axios.get('http://localhost:8080/getuserInfo')
+        const queryinfo = window.localStorage.getItem('user')
+        const { data } = await axios.get('http://localhost:8080/getuserInfo', { params: queryinfo })
         console.log('LoaduserInfo -> data', data)
+
+        this.userlist = data.data
 
         window.localStorage.setItem('user', JSON.stringify(data.data))
         // window.localStorage.setItem('user', JSON.parse(data.data))
@@ -140,6 +159,13 @@ export default {
       color: #fff;
       font-size: 20px;
     }
+    .login-photo{
+      ::v-deep .mobile-img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 8px;
+      }
+}
 
   }
  ::v-deep .text{
@@ -161,6 +187,35 @@ export default {
   .van-cell__title{
     text-align: center;
     color:#D86262;
+  }
+
+}
+.van-grid{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .van-grid-item{
+    .text{
+      color: black;
+      font-size: 14px;
+    }
+
+  }
+  .gridItem{
+    height:55px;
+    .toutiao-shoucang{
+      color: #D86262;
+    }
+.toutiao-lishi{
+  color:#FF9D1D;
+}
+
+  }
+ .van-cell{
+  .van-icon-location-o{
+      color: red !important;
+    }
 
   }
 

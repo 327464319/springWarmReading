@@ -25,7 +25,6 @@ const routes = [
       { name: 'MyAccount', path: '/account', component: () => import('../views/My/components/account.vue'), props: true }
     ]
   },
-<<<<<<< HEAD
   { path: '/login', component: () => import('../views/Login') },
   { path: '/search', component: () => import('../views/BookRack/RankSearch') },
   {
@@ -37,9 +36,7 @@ const routes = [
   },
   { path: '/information', component: () => import('../views/BookRack/Information.vue') },
   { path: '/special', component: () => import('../views/BookRack/Special.vue') },
-=======
   { path: '/login', name: 'login', component: () => import('../views/Login') },
->>>>>>> index
   { path: '/gender', component: () => import('../views/Gender') },
   { path: '/register', component: () => import('../views/Register') },
   { path: '/booktypes', component: () => import('../views/BookTypes'), meta: { index: 3 } },

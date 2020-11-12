@@ -7,7 +7,7 @@
 
       <van-field v-model="user.password" label="密码" placeholder="请输入新置密码" maxlength="16" :rules="userRules.password" />
 
-      <van-field v-model="user.code" label="密码" placeholder="请重新输入密码" maxlength="16" :rules="userRules.code" />
+      <van-field v-model="user.code" label="重置密码" placeholder="请重新输入密码" maxlength="16" :rules="userRules.code" />
     </van-form>
     <van-button class="login" round block type="info" native-type="submit" @click="zhuce">
       注册
@@ -58,6 +58,7 @@ export default {
         this.$toast('两次密码不一致')
       } else {
         setItem('register', this.user)
+        this.$toast.success('注册账号成功')
         this.$router.push('/login')
       }
     }

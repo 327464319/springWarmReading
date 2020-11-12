@@ -10,10 +10,10 @@
 
     <!-- 登录页面 -->
     <van-cell-group>
-      <van-field v-model="zhang" label="账号" placeholder="请输入账号" />
+      <van-field v-model="zhang" label="账号" placeholder="请输入账号" maxlength="11" />
     </van-cell-group>
     <van-cell-group>
-      <van-field v-model="mi" label="密码" placeholder="请输入密码" />
+      <van-field v-model="mi" label="密码" placeholder="请输入密码" maxlength="16" />
     </van-cell-group>
 
     <!-- 登录按钮 -->
@@ -48,7 +48,8 @@
 </template>
 
 <script>
-import { getItem } from '../../utils/storage'
+import { getItem, setItem } from '../../utils/storage'
+
 export default {
 
   name: 'Login',
@@ -81,9 +82,10 @@ export default {
       this.$toast.success('微博登录成功')
     },
     zhanghao () {
-      console.log(this.register)
-      if (this.register.mobile === this.zhang.toString() && this.register.password === this.mi.toString()) {
+      // console.log(this.register)
+      if (this.register.mobile === this.zhang && this.register.password === this.mi) {
         this.$router.push('/my')
+        setItem('login', this.register)
       } else {
         this.$toast('密码或账号错误')
       }

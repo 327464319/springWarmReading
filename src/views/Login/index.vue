@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { getItem } from '../../utils/storage'
 export default {
 
   name: 'Login',
@@ -55,7 +56,7 @@ export default {
   data () {
     return {
       loading: false,
-      register: this.$route.params,
+      register: getItem('register'),
       zhang: '',
       mi: ''
     }
@@ -80,8 +81,11 @@ export default {
       this.$toast.success('微博登录成功')
     },
     zhanghao () {
-      if (this.register.name === this.zhang.toString() && this.register.password === this.mi.toString()) {
+      console.log(this.register)
+      if (this.register.mobile === this.zhang.toString() && this.register.password === this.mi.toString()) {
         this.$router.push('/my')
+      } else {
+        this.$toast('密码或账号错误')
       }
     }
 

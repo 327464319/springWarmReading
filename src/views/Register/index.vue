@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { setItem } from '../../utils/storage'
 export default {
   name: 'RegisterPage',
   data () {
@@ -56,14 +57,8 @@ export default {
       } else if (this.user.password !== this.user.code) {
         this.$toast('两次密码不一致')
       } else {
-        this.$router.push({
-          name: 'login',
-          params: {
-            name: this.user.mobile,
-            password: this.user.password
-          }
-        }
-        )
+        setItem('register', this.user)
+        this.$router.push('/login')
       }
     }
 

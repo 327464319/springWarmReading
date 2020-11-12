@@ -101,6 +101,9 @@ export default {
   created () {
     // console.log(this.$route.params)
   },
+  activated () {
+    this.register = getItem('register')
+  },
   mounted () {},
   methods: {
     // wei () {

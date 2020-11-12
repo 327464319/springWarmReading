@@ -120,6 +120,7 @@ export default {
     // },
     zhanghao () {
       const regArr = getItem('register')
+      if (!regArr) { this.$toast('密码或账号错误') }
       const bl = regArr.some(v => {
         return v.mobile === this.zhang.toString() && v.password === this.mi.toString()
       })

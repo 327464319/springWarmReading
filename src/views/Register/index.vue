@@ -19,16 +19,14 @@
       />
 
       <van-field
-        type="password"
         v-model="user.password"
         label="密码"
-        placeholder="请输入新置密码"
+        placeholder="请输入密码"
         maxlength="16"
         :rules="userRules.password"
       />
 
       <van-field
-        type="password"
         v-model="user.code"
         label="确认密码"
         placeholder="请重新输入密码"

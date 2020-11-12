@@ -27,11 +27,7 @@ const routes = [
     ]
   },
   // { path: '/login', component: () => import('../views/Login') },
-<<<<<<< HEAD
-  { path: '/search', component: () => import('../views/BookRack/RankSearch') },
-=======
   { path: '/search', component: () => import('../views/BookRack/RankSearch'), meta: { index: -3 } },
->>>>>>> 2b06b6da52e6d8ba58b780bd8ac2515e4c412021
   {
     name: 'DetailsIndex',
     path: '/details/:bookId',

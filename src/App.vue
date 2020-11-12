@@ -2,7 +2,7 @@
 <template>
   <div id="app">
     <transition :name="direction">
-      <keep-alive> <router-view /></keep-alive>
+      <keep-alive :include="$store.state.include"> <router-view /></keep-alive>
     </transition>
   </div>
 </template>

@@ -7,7 +7,9 @@ export default new Vuex.Store({
   state: {
 
     user: JSON.parse(window.localStorage.getItem('user')),
+    // user: JSON.parse(window.localStorage.getItem('user'))
     // this.user = JSON.parse(this.user)
+    include: ['Home'],
 
     // 用户的春卷余额(balance：余额)
     userBalance: 10,
@@ -31,6 +33,22 @@ export default new Vuex.Store({
     },
     updateIsBuy (state) {
       state.isBuy = true
+    },
+    setInclude (state, target) {
+      if (state.include.indexOf(target) === -1) {
+        state.include.push(target)
+      } else {
+        return false
+      }
+    },
+    removeInclude (state, target) {
+      const index = state.include.indexOf(target)
+
+      if (index === -1) {
+        return false
+      } else {
+        state.include.splice(index, 1)
+      }
     }
 
   },

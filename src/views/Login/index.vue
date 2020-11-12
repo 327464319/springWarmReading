@@ -1,7 +1,12 @@
 <template>
   <div class="login">
     <div class="big-img">
-      <van-image round width="100px" height="100px" :src="require('../../assets/shu.jpg')" />
+      <van-image
+        round
+        width="100px"
+        height="100px"
+        :src="require('../../assets/shu.jpg')"
+      />
     </div>
     <div class="text">
       <span class="text-top">春暖阅读</span>
@@ -10,44 +15,75 @@
 
     <!-- 登录页面 -->
     <van-cell-group>
-      <van-field v-model="zhang" label="账号" placeholder="请输入账号" />
+      <van-field
+        v-model="zhang"
+        label="账号"
+        placeholder="请输入账号"
+        maxlength="11"
+      />
     </van-cell-group>
     <van-cell-group>
-      <van-field v-model="mi" label="密码" placeholder="请输入密码" />
+      <van-field
+        v-model="mi"
+        label="密码"
+        placeholder="请输入密码"
+        type="password"
+      />
     </van-cell-group>
 
     <!-- 登录按钮 -->
-    <van-button class="deng" round type="primary" size="small" @click="zhanghao">登 录</van-button>
+    <van-button class="deng" round type="primary" size="small" @click="zhanghao"
+      >登 录</van-button
+    >
 
     <!-- 一键登录 -->
-    <van-divider :style="{  padding: '0 16px' }">
-      一键登录
-    </van-divider>
+    <van-divider :style="{ padding: '0 16px' }"> 一键登录 </van-divider>
 
     <!-- 第三方登录模块 -->
     <div class="login-block">
       <span class="small-img">
-        <van-image round width="60" height="60px" fit="cover" :src="require('../../assets/weixin.jpg')" />
-        <van-button class="icon-text" @click="wei" to="bookrack">微信登录</van-button>
+        <van-image
+          round
+          width="60"
+          height="60px"
+          fit="cover"
+          :src="require('../../assets/weixin.jpg')"
+        />
+        <van-button class="icon-text" to="bookrack">微信登录</van-button>
       </span>
 
       <span class="small-img">
-        <van-image round width="60px" height="60px" fit="cover" :src="require('../../assets/qq.png')" />
-        <van-button class="icon-text" to="bookrack" @click="qq">QQ登录</van-button>
+        <van-image
+          round
+          width="60px"
+          height="60px"
+          fit="cover"
+          :src="require('../../assets/qq.png')"
+        />
+        <van-button class="icon-text" to="bookrack">QQ登录</van-button>
       </span>
 
       <span class="small-img">
-        <van-image round width="60px" height="60px" fit="cover" :src="require('../../assets/weibo.png')" />
-        <van-button class="icon-text" to="bookrack" @click="weibo">微博登录</van-button>
+        <van-image
+          round
+          width="60px"
+          height="60px"
+          fit="cover"
+          :src="require('../../assets/weibo.png')"
+        />
+        <van-button class="icon-text" to="bookrack">微博登录</van-button>
       </span>
     </div>
     <!-- 注册跳转按钮 -->
-    <van-button class="register" round type="primary" to="register">去注册>></van-button>
-
+    <van-button class="register" round type="primary" to="register"
+      >去注册>></van-button
+    >
   </div>
 </template>
 
 <script>
+
+import { getItem, setItem } from '../../utils/storage'
 export default {
 
   name: 'Login',
@@ -55,7 +91,7 @@ export default {
   data () {
     return {
       loading: false,
-      register: this.$route.params,
+      // register: getItem('register'),
       zhang: '',
       mi: ''
     }
@@ -65,23 +101,35 @@ export default {
   created () {
     // console.log(this.$route.params)
   },
+  activated () {
+    this.register = getItem('register')
+  },
   mounted () {},
   methods: {
-    wei () {
-      this.loading = false
-      this.$toast.success('微信登录成功')
-    },
-    qq () {
-      this.loading = false
-      this.$toast.success('qq登录成功')
-    },
-    weibo () {
-      this.loading = false
-      this.$toast.success('微博登录成功')
-    },
+    // wei () {
+    //   this.loading = false
+    //   this.$toast.success('微信登录成功')
+    // },
+    // qq () {
+    //   this.loading = false
+    //   this.$toast.success('qq登录成功')
+    // },
+    // weibo () {
+    //   this.loading = false
+    //   this.$toast.success('微博登录成功')
+    // },
     zhanghao () {
-      if (this.register.name === this.zhang.toString() && this.register.password === this.mi.toString()) {
+      const regArr = getItem('register')
+      if (!regArr) { this.$toast('密码或账号错误') }
+      const bl = regArr.some(v => {
+        return v.mobile === this.zhang.toString() && v.password === this.mi.toString()
+      })
+      if (bl) {
         this.$router.push('/my')
+        setItem('user', { username: this.zhang.toString(), password: this.mi.toString() })
+        this.$store.commit('removeInclude', 'Home')
+      } else {
+        this.$toast('密码或账号错误')
       }
     }
 

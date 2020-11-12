@@ -16,6 +16,15 @@
   </noscript>
   <div id="app"></div>
   <!-- built files will be auto injected -->
+  <script>
+   document.addEventListener('selectstart', function (e) {
+        e.preventDefault();
+      })
+      document.addEventListener('contextmenu', function (e) {
+          e.preventDefault();
+        })
+
+  </script>
 </body>
 
 </html>

@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { getItem, setItem } from '../../utils/storage'
+import { getItem } from '../../utils/storage'
 
 export default {
 
@@ -66,6 +66,9 @@ export default {
   watch: {},
   created () {
     // console.log(this.$route.params)
+  },
+  activated () {
+    this.register = getItem('register')
   },
   mounted () {},
   methods: {
@@ -85,7 +88,6 @@ export default {
       // console.log(this.register)
       if (this.register.mobile === this.zhang && this.register.password === this.mi) {
         this.$router.push('/my')
-        setItem('login', this.register)
       } else {
         this.$toast('密码或账号错误')
       }

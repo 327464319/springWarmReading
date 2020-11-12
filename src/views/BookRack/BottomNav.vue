@@ -3,9 +3,11 @@ import { mapState } from 'vuex';
   <div>
     <div class="bottom_nav">
       <div>下载</div>
-      <div>免费试读</div>
-      <div @click="addBookMall"
-           v-if="isAddShow">加入书架</div>
+      <div @click="$router.push('/bookinterface')">免费试读</div>
+      <div
+        @click="addBookMall"
+        v-if="isAddShow"
+      >加入书架</div>
       <div v-else-if="!isAddShow">
         <span>
           <van-icon name="coupon-o" />

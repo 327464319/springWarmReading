@@ -29,6 +29,12 @@
           :name="value.title"
           @click="toggle(index)"
         >
+          <!-- ------------ -->
+          <van-icon
+            slot="right-icon"
+            name="arrow"
+          >123</van-icon>
+
           <template #title>
             <div>{{value.title}}
               <van-icon class="iconfont icon-jiami" />
@@ -58,6 +64,7 @@
               @click="rightCheckBtn(value.setion)"
             />
           </template>
+
           <!-- <van-checkbox
           v-model="chapterChecked"
           slot="right-icon"
@@ -77,7 +84,7 @@
         <span class="checked">已选 {{ result.length }}小节</span>
         <div class="balance">
           <span>价格 {{  result.length*10  }} 春卷</span>
-          <span>余额 {{  10-result.length*10  }} 春卷</span>
+          <span>余额 {{  balance-result.length*10  }} 春卷</span>
         </div>
 
       </div>
@@ -86,6 +93,8 @@
         class="confirmBtn"
         type="info"
         round
+        :disabled="balance-result.length*10<0"
+        @click="buyChapter"
       >购买并下载</van-button>
 
       <!-- 余额不足购买界面 -->
@@ -153,6 +162,7 @@
 
 <script>
 import { Dialog } from 'vant'
+import { mapState } from 'vuex'
 
 export default {
   name: 'BulkBuy',
@@ -184,10 +194,27 @@ export default {
   watch: {
     result (val) {
       this.rechargeShow = (this.balance - this.result.length * 10) < 0
+    },
+    userBalance (val) {
+      this.balance = val
     }
   },
-  computed: {},
+  computed: {
+    ...mapState(['userBalance'])
+  },
   methods: {
+    // ...mapMutations(['updatePayDoneBack'])
+    // 购买并下载章节
+    buyChapter () {
+      this.$store.commit('updateNoPayChapters')
+      this.result = []
+      this.$store.commit('updateIsBuy')
+      // this.$store.commit('updatePayDoneBack')
+      // this.$router.push('/bookinterface')
+      this.$router.back()
+      this.$toast('购买章节成功！')
+    },
+    // 余额不足按钮选项
     rechargeBtn (num) {
       this.bulkBuyShow = true
       this.currentBtnData = num
@@ -201,6 +228,7 @@ export default {
           // on confirm
           this.bulkBuyShow = false
           this.$toast(`${this.currentBtnData} 春卷 已回血！`)
+          this.$store.commit('updateBalance', this.currentBtnData)
         })
         .catch(() => {
           // on cancel
@@ -235,7 +263,6 @@ export default {
           bookId: this.bookId
         }
       })
-      console.log(res)
       this.catalogList = res
     },
     rightCheckBtn (data) {

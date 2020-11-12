@@ -30,7 +30,8 @@
           >
             <template #title>
               <div>{{value.title}}
-                <van-icon :class="value.chapter_id!==1?'iconfont icon-IOTtubiao_huabanfuben':''" />
+                <!-- <van-icon :class="value.chapter_id!==1?'iconfont icon-IOTtubiao_huabanfuben':''" /> -->
+                <van-icon :class="!isBuy&&value.chapter_id!==1?'iconfont icon-IOTtubiao_huabanfuben':''" />
               </div>
             </template>
             <van-cell
@@ -97,6 +98,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
   name: 'SliderCatalog',
@@ -112,21 +114,16 @@ export default {
     }
   },
   created () {},
+  computed: {
+    ...mapState(['noPayChapters', 'isBuy'])
+  },
   mounted () {
     this.loadCatalog()
     this.loadBookMask()
-    this.monitoring()
   },
   watch: {},
   methods: {
-    // testChild () {
-    //   console.log('testChild')
-    // },
-    monitoring () {
-      this.$on('testChild', (res) => {
-        console.log(res)
-      })
-    },
+
     // 调用接口获取目录数据
     async loadCatalog () {
       const { data: res } = await this.$axios({
@@ -136,7 +133,6 @@ export default {
           bookId: this.bookId
         }
       })
-      console.log(res)
       this.catalogData = res
     },
     // 调用接口获取书签数据
@@ -145,9 +141,7 @@ export default {
         method: 'get',
         url: 'http://localhost:8080/bookmask/' + this.bookId
       })
-      console.log(res)
       this.bookMaskData = res.data[0]
-      console.log('created -> this.bookMaskData', this.bookMaskData)
     },
     setionChecked (bookId, chapterId, setionId, locationId) {
       this.setionCheckedId = locationId

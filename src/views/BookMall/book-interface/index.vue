@@ -77,12 +77,6 @@
       >
 
       </van-swipe-item>
-      <!-- 右下角显示页码 -->
-      <!-- <template #indicator>
-        <div class="custom-indicator">
-          {{ current + 1 }}/{{list.length}}
-        </div>
-      </template> -->
 
     </van-swipe>
 
@@ -185,17 +179,17 @@
         <span class="text">亮度</span>
         <i
           class="iconfont icon-liangdu-"
-          @click="$toast('亮度-')"
+          @click="changLight(1)"
         />
         <van-slider
           class="progressItem "
           v-model="currentBrightness"
-          :min="-50"
-          :max="50"
+          :min="0"
+          :max="100"
         />
         <i
           class="iconfont icon-liangdu1"
-          @click="$toast('亮度+')"
+          @click="changLight(2)"
         />
       </div>
       <div class="bottom">
@@ -254,7 +248,7 @@
       >进度</van-tabbar-item>
       <van-tabbar-item
         class="iconfont icon-ziti"
-        @click="fontSetShow=!fontSetShow"
+        @click="fontLightSet"
       >设置</van-tabbar-item>
       <van-tabbar-item
         class="iconfont icon-yejian"
@@ -262,6 +256,14 @@
       >夜间</van-tabbar-item>
 
     </van-tabbar>
+
+    <!-- 亮度遮罩层 -->
+    <div
+      class="lightMask"
+      v-show="lightMaskShow"
+    ></div>
+    <!-- 亮度遮罩层 -->
+
   </div>
 </template>
 
@@ -269,6 +271,7 @@
 import bookMasksData from '@/assets/bookMasksData'
 import SliderCatalog from '@/views/BookMall/book-interface/components/slider-catalog'
 import { Dialog } from 'vant'
+import { mapState } from 'vuex'
 
 export default {
   name: 'ArticleIndex',
@@ -277,6 +280,10 @@ export default {
   },
   data () {
     return {
+      firstLogin: true,
+      lightNum: 20,
+      currentBrightness: 80,
+      lightMaskShow: true,
       moreListShow: false,
       autoBuyChecked: false,
       payShow: false,
@@ -289,7 +296,6 @@ export default {
       progressShow: false,
       progressPct: 0,
       fontSetShow: false,
-      currentBrightness: 0,
       Num: 20,
       nightModeFlag: false,
       bookId: 1,
@@ -299,7 +305,7 @@ export default {
       currentChapterId: 0,
       bookMasks: [],
       progressTitle: '',
-      noPayChapters: [2, 3],
+      // noPayChapters: [2, 3, 4, 5],
       buyOnlyChapterShow: false,
       buyOnlyChapterOptions: [
         { name: '微信支付', icon: 'wechat' },
@@ -310,6 +316,14 @@ export default {
     }
   },
   watch: {
+
+    currentBrightness (val) {
+      this.lightNum = 100 - val
+      document.querySelector('.lightMask').style.opacity = `${this.lightNum / 100}`
+    },
+    lightNum (val) {
+      this.currentBrightness = 100 - val
+    },
     setShow (val) {
       this.btnShow = !val
       this.progressShow = this.fontSetShow = false
@@ -332,12 +346,43 @@ export default {
       this.setionId = val
     }
   },
-  computed: {},
+  computed: {
+    ...mapState(['noPayChapters', 'payDoneBack'])
+  },
   created () {},
   mounted () {
     this.loadBookDdata()
   },
+  // keepAlive回调函数保证支付完成后回到阅读界面的payshow弹窗关闭
+  activated () {
+    // if (this.firstLogin) {
+    //   this.firstLogin = false
+    //   return
+    // }
+    this.payShow = false
+  },
+  deactivated () {
+    this.payShow = false
+    this.setShow = false
+  },
   methods: {
+    // 调节文本内容亮度
+    changLight (flag) {
+      if (flag === 1) {
+        console.log((this.lightNum - 1) / 10)
+        document.querySelector('.lightMask').style.opacity = `${(this.lightNum + 10) / 100}`
+        this.lightNum = this.lightNum === 100 ? 100 : this.lightNum + 10
+      } else if (flag === 2) {
+        document.querySelector('.lightMask').style.opacity = `${(this.lightNum - 10) / 100}`
+        this.lightNum = this.lightNum === 0 ? 0 : this.lightNum - 10
+      }
+    },
+    // 字体和亮度设置
+    fontLightSet () {
+      this.fontSetShow = !this.fontSetShow
+      this.lightMaskShow = true
+    },
+
     // 购买本章确定按钮
     byuOnlySelect () {
       Dialog.confirm({
@@ -381,7 +426,7 @@ export default {
       this.$refs.bookRef.prev()
     },
     nextPage () {
-      if (this.chapterId < 3) {
+      if (this.chapterId < 9) {
         if (this.list.length - 1 === this.swipeContrlId) {
           this.chapterId++
           this.swipeContrlId = 0
@@ -402,6 +447,7 @@ export default {
       this.setionId = data.setionId
     },
     async loadBookDdata () {
+      if (this.chapterId > 5) return this.$toast('文章连载中,待更新...')
       const { data: res } = await this.$axios({
         method: 'get',
         url: 'http://localhost:8080/catalog',
@@ -411,16 +457,15 @@ export default {
           setionId: this.setionId
         }
       })
-      console.log(res)
-      // 每次重新获取新章节后调用校验章节id是否付费的方法
-      this.inspectBuiedChapterId(res[0].chapter_id)
-
-      this.chapterId = res[0].chapter_id
-      this.list = res[0].setions
+      // 每次重新获取新章节后调用校验章节id是否付费的方法,前提需要判断chapter是否为0
+      if (this.chapterId > 0) {
+        this.inspectBuiedChapterId(res[0].chapter_id)
+        this.chapterId = res[0].chapter_id
+        this.list = res[0].setions
+      }
     },
     // 检查章节是否已付费方法
     inspectBuiedChapterId (chapterId) {
-      // if (chapterId > 1) this.payShow = true
       this.payShow = this.noPayChapters.indexOf(chapterId) !== -1
     },
     onClickLeft () {
@@ -475,8 +520,19 @@ export default {
 
 <style lang="scss" scoped>
 .book-container {
-  // background-color: black;
-  // color: white;
+  position: relative;
+
+  // 亮度调节遮罩层
+  .lightMask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-color: #333;
+    opacity: 0.2;
+  }
   .van-nav-bar {
     position: fixed;
     top: 0;
@@ -558,6 +614,7 @@ export default {
     width: 30%;
     height: 30%;
     opacity: 0;
+    z-index: 2;
   }
   .pay-popup-content {
     display: flex;
@@ -589,10 +646,6 @@ export default {
     .autoBuy {
       font-size: 12px;
       margin-top: 30px;
-      // ::v-deep .van-icon-success {
-      //   width: 12px;
-      //   height: 12px;
-      // }
     }
   }
   .left-btn {
@@ -602,6 +655,7 @@ export default {
     width: 35%;
     height: 85%;
     opacity: 0;
+    z-index: 2;
   }
   .right-btn {
     position: fixed;
@@ -610,13 +664,12 @@ export default {
     width: 35%;
     height: 85%;
     opacity: 0;
+    z-index: 2;
   }
   // 进度条弹出框
   .progressBox {
     position: fixed;
     bottom: 48px;
-    // left: 0;
-    // right: 0;
     background-color: #ffffff;
     width: 100%;
     height: 100px;
@@ -626,6 +679,7 @@ export default {
     justify-content: center;
     border-top: 1px solid #cccccc;
     border-bottom: 1px solid #cccccc;
+    z-index: 2;
     .progressNum {
       font-size: 16px;
     }
@@ -635,7 +689,7 @@ export default {
       align-items: center;
       justify-content: center;
       .progressItem {
-        width: 75%;
+        width: 70%;
         margin: 0 10px;
       }
     }
@@ -648,8 +702,6 @@ export default {
   .fontSetBox {
     position: fixed;
     bottom: 48px;
-    // left: 0;
-    // right: 0;
     background-color: #ffffff;
     width: 100%;
     height: 121px;

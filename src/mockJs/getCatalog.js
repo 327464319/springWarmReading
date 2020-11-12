@@ -17,7 +17,7 @@ export default {
     })
 
     // 如果请求体为空，读取目录接口
-    if (!options.body.chapterId) {
+    if (!options.body.chapterId && options.body.chapterId !== 0) {
       backBookData.book_id = bookObj[0].book_id
       backBookData.book_name = bookObj[0].book_name
       let index = 0
@@ -43,7 +43,6 @@ export default {
           })
         })
       })
-      console.log(backBookData)
       // 将写好的数据对象返回
       return backBookData
     }

@@ -27,7 +27,6 @@
         :rules="userRules.password"
       />
 
-<<<<<<< HEAD
       <van-field
         type="password"
         v-model="user.code"
@@ -36,9 +35,6 @@
         maxlength="16"
         :rules="userRules.code"
       />
-=======
-      <van-field v-model="user.code" label="重置密码" placeholder="请重新输入密码" maxlength="16" :rules="userRules.code" />
->>>>>>> 01c67d282b3a9c5b6d8414d6c2e58217e086760f
     </van-form>
     <van-button
       class="login"
@@ -106,7 +102,6 @@ export default {
         this.$store.commit('removeInclude', 'Home')
         this.$router.push('/my')
       } else {
-<<<<<<< HEAD
         // 判断注册数组里是否有重复数据
 
         const bl = regArr.some(v => v.mobile === this.user.mobile)
@@ -122,11 +117,6 @@ export default {
           this.$store.commit('removeInclude', 'Home')
           this.$router.push('/my')
         }
-=======
-        setItem('register', this.user)
-        this.$toast.success('注册账号成功')
-        this.$router.push('/login')
->>>>>>> 01c67d282b3a9c5b6d8414d6c2e58217e086760f
       }
     }
 
